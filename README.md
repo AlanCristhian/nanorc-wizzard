@@ -1,2 +1,2 @@
-# nano
+# nanorc
 Nano configuration
