@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if command -v pwsh.exe >/dev/null 2>&1; then
+  pwsh="pwsh.exe"
+elif command -v powershell.exe >/dev/null 2>&1; then
+  pwsh="powershell.exe"
+else
+  exit 1
+fi
+pwsh="$pwsh -NoProfile -NoLogo -NonInteractive"
+$pwsh -command Get-Clipboard | sed 's/\r$//' | head -c -1

@@ -1,0 +1,488 @@
+## /c/Program\ Files/Git/usr/share/mintty/themes/alan_light
+## Sample initialization file for GNU nano.
+##
+## For the options that take parameters, the default value is shown.
+## Other options are unset by default.  To make sure that an option
+## is disabled, you can use "unset <option>".
+##
+## Characters that are special in a shell should not be escaped here.
+## Inside string parameters, quotes should not be escaped -- the last
+## double quote on the line will be seen as the closing quote.
+
+## Make 'nextword' (Ctrl+Right) and 'chopwordright' (Ctrl+Delete)
+## stop at word ends instead of at beginnings.
+# set afterends
+
+## When soft line wrapping is enabled, make it wrap lines at blanks
+## (tabs and spaces) instead of always at the edge of the screen.
+# set atblanks
+
+## Automatically indent a newly created line to the same number of
+## tabs and/or spaces as the preceding line -- or as the next line
+## if the preceding line is the beginning of a paragraph.
+set autoindent
+
+## Back up files to the current filename plus a tilde.
+#set backup
+
+## The directory to put unique backup files in.
+# set backupdir ""
+
+## Use bold text instead of reverse video text.
+set boldtext
+
+## Treat any line with leading whitespace as the beginning of a paragraph.
+# set bookstyle
+
+## The characters treated as closing brackets when justifying paragraphs.
+## This may not include any blank characters.  Only closing punctuation,
+## optionally followed by these closing brackets, can end sentences.
+set brackets "\"')>]}"
+
+## Automatically hard-wrap the current line when it becomes overlong.
+# set breaklonglines
+
+## Do case-sensitive searches by default.
+# set casesensitive
+
+## Constantly display the cursor position in the status bar or minibar.
+set constantshow
+
+## Use cut-from-cursor-to-end-of-line by default.
+# set cutfromcursor
+
+## Do not use the line below the title bar, leaving it entirely blank.
+# set emptyline
+
+## Set the target width for automatic hard-wrapping and for justifying
+## paragraphs.  If the specified value is 0 or less, the wrapping point
+
+## will be the terminal's width minus this number.
+# set fill -8
+
+## Draw a vertical stripe at the given column, to help judge text width.
+## (This option does not have a default value.)
+set guidestripe 81
+
+## Remember the used search/replace strings for the next session.
+set historylog
+
+## Display a "scrollbar" on the righthand side of the edit window.
+set indicator
+
+## Scroll the buffer contents per half-screen instead of per line.
+# set jumpyscrolling
+
+## Display line numbers to the left (and any anchors in the margin).
+set linenumbers
+
+## Enable vim-style lock-files.  This is just to let a vim user know you
+## are editing a file [s]he is trying to edit and vice versa.  There are
+## no plans to implement vim-style undo state in these files.
+# set locking
+
+## Fall back to slow libmagic to try and determine an applicable syntax.
+# set magic
+
+## The opening and closing brackets that are found by a matching-bracket
+## search.  This may not contain blank characters.  The opening brackets
+## must come before the closing ones, and they must be in the same order.
+# set matchbrackets "(<[{)>]}"
+
+## Suppress the title bar and show the filename plus a cursor-position
+## percentage in the space of the status bar.
+set minibar
+
+## Enable mouse support, if available for your system.  When enabled,
+## mouse clicks can be used to place the cursor, set the mark (with a
+## double click), and execute shortcuts.  The mouse will work in the
+## X Window System, and on the console when gpm is running.
+set mouse
+
+## Switch on multiple file buffers (inserting a file will put it into
+## a separate buffer).
+# set multibuffer
+
+## Don't convert files from DOS/Mac format.
+# set noconvert
+
+## Don't display the helpful shortcut lists at the bottom of the screen.
+set nohelp
+
+## Don't automatically add a newline when a file does not end with one.
+# set nonewlines
+
+## Set operating directory.  nano will not read or write files outside
+## this directory and its subdirectories.  Also, the current directory
+## is changed to here, so any files are inserted from this dir.  A blank
+## string means the operating-directory feature is turned off.
+# set operatingdir ""
+
+## Remember the cursor position in each file for the next editing session.
+set positionlog
+
+## Preserve the XON and XOFF keys (^Q and ^S).
+# set preserve
+
+## The characters treated as closing punctuation when justifying paragraphs.
+## This may not contain blank characters.  Only these closing punctuations,
+## optionally followed by closing brackets, can end sentences.
+# set punct "!.?"
+
+## Make status-bar messages disappear after 1 keystroke instead of after 20.
+# set quickblank
+
+## The regular expression that matches quoting characters in email
+## or line-comment introducers in source code.  The default is:
+# set quotestr "^([ 	]*([!#%:;>|}]|//))+"
+
+## Try to work around a mismatching terminfo terminal description.
+# set rawsequences
+
+## Fix Backspace/Delete confusion problem.
+# set rebinddelete
+
+## Do regular-expression searches by default.
+## Regular expressions are of the extended type (ERE).
+# set regexp
+
+## Save a changed buffer automatically on exit; don't prompt.
+# set saveonexit
+## (The old form of this option, 'set tempfile', is deprecated.)
+
+## Put the cursor on the highlighted item in the file browser, and
+## show the cursor in the help viewer; useful for people who use a
+## braille display and people with poor vision.
+# set showcursor
+
+## Make the Home key smarter: when Home is pressed anywhere but at the
+## very beginning of non-whitespace characters on a line, the cursor
+## will jump to that beginning (either forwards or backwards).  If the
+## cursor is already at that position, it will jump to the true start
+## of the line (the left edge).
+set smarthome
+
+## Spread overlong lines over multiple screen lines.
+set softwrap
+
+## Use this spelling checker instead of the internal one.  This option
+## does not have a default value.
+# set speller "aspell -x -c"
+
+## Use the end of the title bar for some state flags: I = auto-indenting,
+## M = mark, L = hard-wrapping long lines, R = recording, S = soft-wrapping.
+set stateflags
+
+## Use this tab size instead of the default; it must be greater than 0.
+set tabsize 2
+
+## Convert each typed tab to the fitting number of spaces.
+set tabstospaces
+
+## Snip whitespace at the end of lines when justifying or hard-wrapping.
+# set trimblanks
+
+## Save files by default in Unix format (also when they were DOS or Mac).
+# set unix
+
+## The two single-column characters used to display the first characters
+## of tabs and spaces.  187 in ISO 8859-1 (0000BB in Unicode) and 183 in
+## ISO-8859-1 (0000B7 in Unicode) seem to be good values for these.
+## The default when in a UTF-8 locale:
+# set whitespace "»·"
+## The default otherwise:
+# set whitespace ">."
+
+## Detect word boundaries differently by treating punctuation
+## characters as parts of words.
+# set wordbounds
+
+## The characters (besides alphanumeric ones) that should be considered
+## as parts of words.  This option does not have a default value.  When
+## set, it overrides option 'set wordbounds'.
+# set wordchars "<_>."
+
+## Let an unmodified Backspace or Delete erase the marked region (instead
+## of a single character, and without affecting the cutbuffer).
+set zap
+
+## Hide the bars plus help lines and use the whole terminal as edit area.
+# set zero
+
+## Paint the interface elements of nano.  These are examples; there are
+## no colors by default, except for errorcolor and spotlightcolor.
+set titlecolor white,black
+set promptcolor white,lightcyan
+set statuscolor white,lightgreen
+set errorcolor white,lightred
+set spotlightcolor white,lightyellow
+set selectedcolor white,lightmagenta
+set stripecolor black
+set scrollercolor black
+set numbercolor lightwhite
+# set keycolor cyan
+# set functioncolor green
+
+## === Syntax coloring ===
+## For all details, see 'man nanorc', section SYNTAX HIGHLIGHTING.
+
+## To include most of the existing syntax definitions, you can do:
+# include "@PKGDATADIR@/*.nanorc"
+
+## Or you can select just the ones you need.  For example:
+# include "@PKGDATADIR@/html.nanorc"
+# include "@PKGDATADIR@/python.nanorc"
+# include "@PKGDATADIR@/sh.nanorc"
+
+## In @PKGDATADIR@/extra/ you can find some syntaxes that are
+## specific for certain distros or for some less common languages.
+
+
+## If <Tab> should always produce four spaces when editing a Python file,
+## independent of the settings of 'tabsize' and 'tabstospaces':
+
+## ==== Mastropiero ====
+
+include "~/rep/mastropiero/mastropiero.nanorc"
+
+
+## ==== C ====
+extendsyntax c comment "// "
+
+
+# Constants.
+extendsyntax c color normal "\<[A-Z_][0-9A-Z_]*\>"
+
+# Labels.
+extendsyntax c color magenta "^[[:blank:]]*[A-Z_a-z][0-9A-Z_a-z]*:[[:blank:]]*$"
+extendsyntax c color normal ":[[:blank:]]*$"
+
+# Types and related keywords.
+extendsyntax c color yellow "\<(auto|bool|char|const|double|enum|extern|float|inline|int|long|restrict|short|signed|sizeof|static|struct|typedef|union|unsigned|void)\>"
+extendsyntax c color yellow "\<([[:lower:]][[:lower:]_]*|(u_?)?int(8|16|32|64))_t\>"
+extendsyntax c color yellow "\<(_(Alignas|Alignof|Atomic|Bool|Complex|Generic|Imaginary|Noreturn|Static_assert|Thread_local))\>"
+extendsyntax c color yellow "\<(class|explicit|friend|mutable|namespace|override|private|protected|public|register|template|this|typename|using|virtual|volatile)\>"
+
+# Flow control.
+extendsyntax c color yellow "\<(if|else|for|while|do|switch|case|default)\>"
+extendsyntax c color yellow "\<(try|throw|catch|operator|new|delete)\>"
+extendsyntax c color yellow "\<(break|continue|goto|return)\>"
+
+# Single-quoted stuff (characters, backslash escapes, hex and octal byte codes).
+extendsyntax c color green "'([^'\]|\\(["'\abfnrtv]|x[[:xdigit:]]{1,2}|[0-3]?[0-7]{1,2}))'"
+
+# GCC builtins.
+extendsyntax c color yellow "__attribute__[[:blank:]]*\(\([^)]*\)\)" "__(aligned|asm|builtin|hidden|inline|packed|restrict|section|typeof|weak)__"
+
+# Strings and names of included files.
+extendsyntax c color green ""([^"]|\\")*"" "#[[:blank:]]*include[[:blank:]]*<[^>]+>"
+
+# Preprocessor directives.
+extendsyntax c color yellow start="^[[:blank:]]*#[[:blank:]]*(if(n?def)?|elif|warning|error|pragma)\>" end="(\`|[^\])$"
+extendsyntax c color yellow "^[[:blank:]]*#[[:blank:]]*((define|else|endif|include(_next)?|line|undef)\>|$)"
+
+# Comments.
+extendsyntax c color red "//.*"
+extendsyntax c color red start="/\*" end="\*/"
+
+# Reminders.
+extendsyntax c color brightwhite,yellow "\<(FIXME|TODO|XXX)\>"
+
+# Trailing whitespace.
+extendsyntax c color ,green "[[:space:]]+$"
+
+
+## ==== Python ====
+
+extendsyntax python tabgives "    "
+extendsyntax python comment "# "
+extendsyntax python linter py -3.10 -m mypy --strict
+
+# Function definitions.
+extendsyntax python color blue "(def|class) \<([0-9A-Za-z_]+)\>"
+
+# Keywords
+extendsyntax python color yellow "\<(False|None|True|and|as|assert|async|await|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield)\>"
+
+# Builtin functions
+extendsyntax python color magenta "\<(ArithmeticError|AssertionError|AttributeError|BaseException|BaseExceptionGroup|BlockingIOError|BrokenPipeError|BufferError|BytesWarning|ChildProcessError|ConnectionAbortedError|ConnectionError|ConnectionRefusedError|ConnectionResetError|DeprecationWarning|EOFError|Ellipsis|EncodingWarning|EnvironmentError|Exception|ExceptionGroup|FileExistsError|FileNotFoundError|FloatingPointError|FutureWarning|GeneratorExit|IOError|ImportError|ImportWarning|IndentationError|IndexError|InterruptedError|IsADirectoryError|KeyError|KeyboardInterrupt|LookupError|MemoryError|ModuleNotFoundError|NameError|NotADirectoryError|NotImplemented|NotImplementedError|OSError|OverflowError|PendingDeprecationWarning|PermissionError|ProcessLookupError|RecursionError|ReferenceError|ResourceWarning|RuntimeError|RuntimeWarning|StopAsyncIteration|StopIteration|SyntaxError|SyntaxWarning|SystemError|SystemExit|TabError|TimeoutError|TypeError|UnboundLocalError|UnicodeDecodeError|UnicodeEncodeError|UnicodeError|UnicodeTranslateError|UnicodeWarning|UserWarning|ValueError|Warning|WindowsError|ZeroDivisionError|abs|aiter|all|anext|any|ascii|bin|bool|breakpoint|bytearray|bytes|callable|chr|classmethod|compile|complex|copyright|credits|delattr|dict|dir|divmod|enumerate|eval|exec|exit|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|isinstance|issubclass|iter|len|license|list|locals|map|max|memoryview|min|next|object|oct|open|ord|pow|print|property|quit|range|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|vars|zip|self|cls)\>"
+
+# Dunder methods
+extendsyntax python color magenta "\<(__abs__|__add__|__aenter__|__aexit__|__aiter__|__and__|__anext__|__annotations__|__await__|__bases__|__bool__|__bytes__|__call__|__ceil__|__class__|__classcell__|__closure__|__code__|__complex__|__contains__|__defaults__|__del__|__delattr__|__delete__|__delitem__|__dict__|__dir__|__divmod__|__doc__|__enter__|__eq__|__exit__|__file__|__float__|__floor__|__floordiv__|__format__|__func__|__future__|__ge__|__get__|__getattr__|__getattribute__|__getitem__|__globals__|__gt__|__hash__|__iadd__|__iand__|__ifloordiv__|__ilshift__|__imatmul__|__imod__|__import__|__imul__|__index__|__init__|__instancecheck__|__int__|__invert__|__ior__|__ipow__|__irshift__|__isub__|__iter__|__itruediv__|__ixor__|__kwdefaults__|__le__|__len__|__lshift__|__lt__|__matmul__|__missing__|__mod__|__module__|__mro__|__mul__|__name__|__ne__|__neg__|__new__|__next__|__objclass__|__or__|__pos__|__pow__|__prepare__|__qualname__|__radd__|__rand__|__rdivmod__|__repr__|__reversed__|__rfloordiv__|__rlshift__|__rmatmul__|__rmod__|__rmul__|__ror__|__round__|__rpow__|__rrshift__|__rshift__|__rsub__|__rtruediv__|__rxor__|__self__|__set__|__setattr__|__setitem__|__slots__|__str__|__sub__|__subclasscheck__|__traceback__|__truediv__|__trunc__|__weakref__|__xor__)\>"
+
+# Mono-quoted strings
+extendsyntax python color green "'([^'\]|\\.)*'|"([^"\]|\\.)*"|'''|""""
+extendsyntax python color green "'''|""""
+
+# Comments
+extendsyntax python color red "(^|[[:blank:]])#.*"
+
+# Triple-quoted strings.
+extendsyntax python color green start="'''([^'),]|$)" end="(^|[^(\])'''"
+extendsyntax python color green start=""""([^"),]|$)" end="(^|[^(\])""""
+
+## If <Tab> should always produce an actual TAB when editing a Makefile:
+# extendsyntax makefile tabgives "	"
+
+# Constants
+#extendsyntax python color magenta "\<([[:digit:]]+)\>"
+#extendsyntax python color magenta "\<(([[:upper:]]|_)([[:upper:]]|_|[[:digit:]])+)\>"
+
+# Operators
+extendsyntax python color yellow "(\+|/|//|&|\^|~|\||\*\*|=|<<|%|\*|@|-|>>|<|<=|==|!=|>=|>|)"
+extendsyntax python color normal "->"
+
+# Comments
+#extendsyntax python color red start="#" end="\n"
+extendsyntax python color red "^#.+"
+
+# Decorators
+extendsyntax python color blue "@([[:alpha:]]|_)([[:alpha:]]|_|\.|[[:digit:]])+"
+
+## ==== MarkDown ====
+
+extendsyntax markdown color magenta "^[ 	]*>.*"
+
+# List-item markers:
+extendsyntax markdown color magenta "^(    |	)* ? ? ?(\*|\+|-|[1-9]+\.)( +|	)"
+
+# Emphasis and strong:
+extendsyntax markdown color red "\*[^* 	][^*]*\*|_[^_ 	][^_]*_"
+extendsyntax markdown color red "\*\*[^*]+\*\*|__[^_]+__"
+
+# Strikethrough:
+extendsyntax markdown color red "~~[^~]+~~"
+
+# Line breaks:
+extendsyntax markdown color ,blue "  $"
+
+# URLs and links:
+extendsyntax markdown color blue "\[[^]]+\]\([^)]+\)"
+extendsyntax markdown color blue "!?\[[^]]+\]"
+
+# Code snippet, indented code, and fenced code:
+extendsyntax markdown color magenta "`[^`]+`"
+extendsyntax markdown color magenta "^(    |	)+ *([^*+0-9> 	-]|[*+-]\S|[0-9][^.]).*"
+extendsyntax markdown color magenta start="```" end="```$"
+
+# Headings and the underlining of headings:
+extendsyntax markdown color yellow "^#.*"
+extendsyntax markdown color yellow "^(=+|-+)$"
+
+# HTML tags and comments:
+extendsyntax markdown color red "<[^>]+>"
+extendsyntax markdown color red start="<!--" end="-->"
+
+
+## === Key bindings ===
+## For all details, see 'man nanorc', section REBINDING KEYS.
+
+## If you want to suspend nano with one keystroke (instead of with ^T^Z):
+# bind ^Z suspend main
+
+## The <Ctrl+Delete> keystroke deletes the word to the right of the cursor.
+## On some terminals the <Ctrl+Backspace> keystroke produces ^H, which is
+## the ASCII character for backspace, so it is bound by default to the
+## backspace function.  The <Backspace> key itself produces a different
+## keycode, which is hard-bound to the backspace function.  So, if you
+## normally use <Backspace> for backspacing and not ^H, you can make
+## <Ctrl+Backspace> delete the word to the left of the cursor with:
+# bind ^H chopwordleft main
+
+## For a more mnemonic Comment keystroke (overriding Cut-from-cursor):
+# bind M-K comment main
+
+## If you want ^L to just refresh the screen and not center the cursor:
+# bind ^L refresh main
+
+## When you sometimes type M-J instead of M-K, or M-T instead of M-R:
+# unbind M-J main
+# unbind M-T main
+## (Those functions are still accessible through ^T^J and ^T^V.)
+
+## For quickly uppercasing or lowercasing the word under the cursor.
+## (These effectively do a Ctrl+Right followed by a Shift+Ctrl+Left,
+## and then pipe the selected text through a sed command.)
+# bind M-U "Oc[1;6D|sed 's/.*/\U&/'" main
+# bind Sh-M-L "Oc[1;6D|sed 's/.*/\L&/'" main
+
+## If you would like nano to have keybindings that are more "usual",
+## such as ^O for Open, ^F for Find, ^H for Help, and ^Q for Quit,
+## then uncomment these:
+
+## Unbind weird behaviour
+unbind ^A all  # home
+unbind ^K all  # cut
+unbind ^T all  # execute command
+unbind ^O all
+unbind ^Y all  # one page up
+unbind M-G all # goto
+unbind M-J all  # justify paragraph or regionc
+unbind ^W all  # whereis
+unbind M-3 all  # comment/uncomment line/region
+unbind  ^\ all  # replace
+unbind ^] all # autocomplete
+unbind ^H all  # backspace
+unbind ^R all  # insert new file
+unbind M-] all  # go to the matching bracket
+unbind ^Q all  # search backward
+unbind ^Space all
+unbind ^D all
+
+## Bind `"normal`" behaviour
+## =========================
+
+## For copying a marked region to the system clipboard:
+# bind Sh-M-T "|xsel -ibu" main
+bind ^C "|nano_wsl_copyu" main
+bind ^X "|nano_wsl_cut" main
+bind ^V "nano_wsl_paste" main
+
+bind Sh-M-C copy main
+bind Sh-M-X cut main
+
+bind Sh-M-V paste main
+bind Sh-M-V paste execute
+bind ^V paste execute
+
+# Open file in new buffer
+bind Sh-M-O insert main
+bind ^O "Of" main
+
+# Open a new void and unnamed buffer
+bind ^N "fecho -n" main
+
+# Duplicate line
+bind ^D "[Fa[H[A[F6" main
+
+# Select all
+bind ^A "[1;5Ha[1;5F" main
+
+bind ^Q exit main
+bind ^S savefile main
+bind M-S writeout main
+
+bind ^F whereis main
+bind ^F whereis help
+
+bind M-F findnext main
+bind M-F findnext help
+
+bind ^B wherewas main
+bind M-B findprevious main
+bind ^R replace main
+bind ^Z undo main
+bind ^Y redo main
+bind ^/ comment main
+bind ^G gotoline main
+bind ^L linter main
+bind ^E execute main
+bind M-. recordmacro main
+bind M-, runmacro main
+bind M-Space complete all
+bind M-} findbracket main  # go to the matching bracket
+
+##ideas
+# - Autocomplete command line.
+# - Autoclose bracket.
+# - Keyword name instead color name.
