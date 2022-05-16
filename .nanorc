@@ -429,21 +429,25 @@ unbind ^Q all  # search backward
 unbind ^Space all
 unbind ^D all
 
-## Bind `"normal`" behaviour
-## =========================
+## =======================
+## Bind "normal" behaviour
+## =======================
 
-## For copying a marked region to the system clipboard:
-# bind Sh-M-T "|xsel -ibu" main
-bind ^C "|nano_wsl_copyu" main
-bind ^X "|nano_wsl_cut" main
+## MAIN: copy, cut and paste
+bind Sh-M-X cut main
+bind Sh-M-V paste main
+bind ^C "XaV|nano_wsl_copyu" main
+bind ^X "XaV|nano_wsl_copy" main
 bind ^V "nano_wsl_paste" main
 
-bind Sh-M-C copy main
-bind Sh-M-X cut main
+## SEARCH: paste
+bind Sh-M-V paste search
+bind ^V "uaVX[17~V" search
 
-bind Sh-M-V paste main
-bind Sh-M-V paste execute
-bind ^V paste execute
+## REPLACE: paste
+bind Sh-M-V paste replace
+bind Sh-M-R replace main
+bind ^V "uaVXRV" replace
 
 # Open file in new buffer
 bind Sh-M-O insert main
@@ -459,6 +463,8 @@ bind ^D "[Fa[H[A[F6" main
 bind ^A "[1;5Ha[1;5F" main
 
 bind ^Q exit main
+bind ^Q exit help
+
 bind ^S savefile main
 bind M-S writeout main
 
@@ -471,6 +477,7 @@ bind M-F findnext help
 bind ^B wherewas main
 bind M-B findprevious main
 bind ^R replace main
+
 bind ^Z undo main
 bind ^Y redo main
 bind ^/ comment main
