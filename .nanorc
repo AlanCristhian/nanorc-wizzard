@@ -429,9 +429,9 @@ unbind ^Q all  # search backward
 unbind ^Space all
 unbind ^D all
 
-## =======================
-## Bind "normal" behaviour
-## =======================
+## ========================
+## Bind copy, cut and paste
+## ========================
 
 ## MAIN: copy, cut and paste
 bind Sh-M-X cut main
@@ -448,6 +448,14 @@ bind ^V "uaVX[17~V" search
 bind Sh-M-V paste replace
 bind Sh-M-R replace main
 bind ^V "uaVXRV" replace
+
+## REPLACEWITH: paste
+bind ^V paste replacewith
+
+## GOTOLINE: paste
+bind Sh-M-V paste gotoline
+bind Sh-M-G gotoline main
+bind ^V "uaVXGV" gotoline
 
 # Open file in new buffer
 bind Sh-M-O insert main
