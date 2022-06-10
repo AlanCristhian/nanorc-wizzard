@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# xsel simulation in WSL
-# usage:
-#     xsel -o
-#     xsel -i [string]
-# From https://www.reddit.com/r/neovim/comments/fyj7mp/neovim_in_wsl_copy_to_windows_clipboard/fn241ig/
-
 if command -v pwsh.exe >/dev/null 2>&1; then
   pwsh="pwsh.exe"
 elif command -v powershell.exe >/dev/null 2>&1; then
@@ -16,8 +10,7 @@ fi
 
 pwsh="$pwsh -NoProfile -NoLogo -NonInteractive"
 
-ans0=$(</dev/stdin)  # read all lines
-ans1=$(echo -n "$ans0" | sed -z 's/\n/\`n/g')  # escape new line
-ans2=$(echo -n "$ans1" | sed -e "s/\"/\`\"/g")  # escape doublequote
+ans0="bin/nano_wsl_clipboard"
+cat > "${ans0}"
 
-$pwsh -command '("'$ans2'" | Out-String -Stream) | Set-Clipboard'
+$pwsh -command "(Get-Content ${ans0} | Out-String -Stream) | Set-Clipboard"
