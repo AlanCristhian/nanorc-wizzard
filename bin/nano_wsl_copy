@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#https://www.reddit.com/r/neovim/comments/fyj7mp/neovim_in_wsl_copy_to_windows_clipboard/fn241ig/
+
 if command -v pwsh.exe >/dev/null 2>&1; then
   pwsh="pwsh.exe"
 elif command -v powershell.exe >/dev/null 2>&1; then
@@ -12,5 +14,5 @@ pwsh="$pwsh -NoProfile -NoLogo -NonInteractive"
 
 ans0="bin/nano_wsl_clipboard"
 cat > "${ans0}"
+$pwsh -command "Get-Content ${ans0} | Set-Clipboard"
 
-$pwsh -command "(Get-Content ${ans0} | Out-String -Stream) | Set-Clipboard"
