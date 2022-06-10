@@ -3,16 +3,15 @@
 #https://www.reddit.com/r/neovim/comments/fyj7mp/neovim_in_wsl_copy_to_windows_clipboard/fn241ig/
 
 if command -v pwsh.exe >/dev/null 2>&1; then
-  pwsh="pwsh.exe"
+  pwsh_name="pwsh.exe"
 elif command -v powershell.exe >/dev/null 2>&1; then
-  pwsh="powershell.exe"
+  pwsh_name="powershell.exe"
 else
   exit 1
 fi
 
-pwsh="$pwsh -NoProfile -NoLogo -NonInteractive"
-
-ans0="bin/nano_wsl_clipboard"
-cat > "${ans0}"
-$pwsh -command "Get-Content ${ans0} | Set-Clipboard"
-
+pwsh_command="$pwsh_name -NoProfile -NoLogo -NonInteractive -command"
+debian_path="/mnt/c/Users/Ruiz/bin/nano_wsl_clipboard"
+windows_path="C:\Users\Ruiz\bin\nano_wsl_clipboard"
+cat > "${debian_path}"
+$pwsh_command "Get-Content ${windows_path} | Set-Clipboard"
