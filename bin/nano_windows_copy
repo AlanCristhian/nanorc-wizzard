@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 #https://www.reddit.com/r/neovim/comments/fyj7mp/neovim_in_wsl_copy_to_windows_clipboard/fn241ig/
 
@@ -10,8 +10,8 @@ else
   exit 1
 fi
 
-pwsh="$pwsh -NoProfile -NoLogo -NonInteractive"
-
-ans0="~/bin/nano_wsl_clipboard"
-cat > "${ans0}"
-$pwsh -command "Get-Content ${ans0} | Set-Clipboard"
+pwsh_command="$pwsh -NoProfile -NoLogo -NonInteractive -command"
+git_bash_path="bin/nano_windows_clipboard"
+windows_path="C:\Users\Ruiz\bin\nano_windows_clipboard"
+cat > "${git_bash_path}"
+$pwsh_command "(Get-Content ${git_bash_path} | Out-String -Stream) | Set-Clipboard"
