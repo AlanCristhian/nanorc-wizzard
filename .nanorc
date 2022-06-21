@@ -62,7 +62,7 @@ set constantshow
 
 ## Draw a vertical stripe at the given column, to help judge text width.
 ## (This option does not have a default value.)
-set guidestripe 81
+set guidestripe 80
 
 ## Remember the used search/replace strings for the next session.
 set historylog
@@ -137,7 +137,7 @@ set positionlog
 # set quotestr "^([ 	]*([!#%:;>|}]|//))+"
 
 ## Try to work around a mismatching terminfo terminal description.
-# set rawsequences
+set rawsequences
 
 ## Fix Backspace/Delete confusion problem.
 # set rebinddelete
@@ -180,7 +180,7 @@ set tabsize 2
 set tabstospaces
 
 ## Snip whitespace at the end of lines when justifying or hard-wrapping.
-# set trimblanks
+set trimblanks
 
 ## Save files by default in Unix format (also when they were DOS or Mac).
 # set unix
@@ -200,7 +200,7 @@ set tabstospaces
 ## The characters (besides alphanumeric ones) that should be considered
 ## as parts of words.  This option does not have a default value.  When
 ## set, it overrides option 'set wordbounds'.
-# set wordchars "<_>."
+set wordchars "_"
 
 ## Let an unmodified Backspace or Delete erase the marked region (instead
 ## of a single character, and without affecting the cutbuffer).
@@ -211,15 +211,15 @@ set zap
 
 ## Paint the interface elements of nano.  These are examples; there are
 ## no colors by default, except for errorcolor and spotlightcolor.
-set titlecolor white,black
+set titlecolor white,lightblack
 set promptcolor white,lightcyan
-set statuscolor white,lightgreen
+set statuscolor white,lightblack
 set errorcolor white,lightred
 set spotlightcolor white,lightyellow
 set selectedcolor white,lightmagenta
-set stripecolor black
-set scrollercolor black
-set numbercolor lightwhite
+set stripecolor lightblack
+set scrollercolor lightblack,black
+set numbercolor bold,white
 # set keycolor cyan
 # set functioncolor green
 
@@ -294,6 +294,10 @@ extendsyntax c color ,green "[[:space:]]+$"
 
 ## ==== Python ====
 
+# Operators
+extendsyntax python color yellow "(\+|/|//|&|\^|~|\||\*\*|=|<<|%|\*|@|-|>>|<|<=|==|!=|>=|>)"
+extendsyntax python color normal "(->|\\)"
+
 extendsyntax python tabgives "    "
 extendsyntax python comment "# "
 extendsyntax python linter py -3.10 -m mypy --strict
@@ -327,10 +331,6 @@ extendsyntax python color green start=""""([^"),]|$)" end="(^|[^(\])""""
 # Constants
 #extendsyntax python color magenta "\<([[:digit:]]+)\>"
 #extendsyntax python color magenta "\<(([[:upper:]]|_)([[:upper:]]|_|[[:digit:]])+)\>"
-
-# Operators
-extendsyntax python color yellow "(\+|/|//|&|\^|~|\||\*\*|=|<<|%|\*|@|-|>>|<|<=|==|!=|>=|>|)"
-extendsyntax python color normal "->"
 
 # Comments
 #extendsyntax python color red start="#" end="\n"
@@ -403,8 +403,12 @@ extendsyntax markdown color red start="<!--" end="-->"
 ## For quickly uppercasing or lowercasing the word under the cursor.
 ## (These effectively do a Ctrl+Right followed by a Shift+Ctrl+Left,
 ## and then pipe the selected text through a sed command.)
-# bind M-U "Oc[1;6D|sed 's/.*/\U&/'" main
-# bind Sh-M-L "Oc[1;6D|sed 's/.*/\L&/'" main
+unbind M-L main
+bind Sh-M-U "|sed 's/.*/\U&/'" main
+bind M-U "Oc[1;6D|sed 's/.*/\U&/'" main
+
+bind Sh-M-L "|sed 's/.*/\L&/'" main
+bind M-L "Oc[1;6D|sed 's/.*/\L&/'" main
 
 ## If you would like nano to have keybindings that are more "usual",
 ## such as ^O for Open, ^F for Find, ^H for Help, and ^Q for Quit,
@@ -428,6 +432,7 @@ unbind M-] all  # go to the matching bracket
 unbind ^Q all  # search backward
 unbind ^Space all
 unbind ^D all
+unbind Ins all
 
 ## ========================
 ## Bind copy, cut and paste
@@ -436,30 +441,48 @@ unbind ^D all
 ## MAIN: copy, cut and paste
 bind Sh-M-X cut main
 bind Sh-M-V paste main
-bind ^C "XaV|nano_wsl_copyu" main
-bind ^X "XaV|nano_wsl_copy" main
+bind Sh-M-C copy main
+bind ^C "XaV|nano_windows_copy" main
+bind ^X "XaV|nano_windows_copy" main
 bind ^V "nano_wsl_paste" main
 
 ## SEARCH: paste
+bind ^F whereis main
+bind ^F whereis help
 bind Sh-M-V paste search
-bind ^V "uaVX[17~V" search
+bind ^V "aXV" search
 
 ## REPLACE: paste
-bind Sh-M-V paste replace
+bind ^R replace main
+bind ^H replace main
 bind Sh-M-R replace main
-bind ^V "uaVXRV" replace
+bind Sh-M-V paste replace
+bind ^V "aXV" replace
 
 ## REPLACEWITH: paste
-bind ^V paste replacewith
+bind Sh-M-V paste replacewith
+bind ^V "aXV" replacewith
 
 ## GOTOLINE: paste
+bind ^G gotoline main
 bind Sh-M-V paste gotoline
-bind Sh-M-G gotoline main
-bind ^V "uaVXGV" gotoline
+bind ^V "aXV" gotoline
 
-# Open file in new buffer
+## WRITEOUT: paste
+bind Sh-M-S writeout main
+bind ^V paste writeout
+bind M-S "aXS" main
+
+## INSERT: Open file in new buffer and paste
 bind Sh-M-O insert main
 bind ^O "Of" main
+bind Sh-M-V paste insert
+bind ^V "aXV" insert
+
+## EXECUTE: paste
+bind ^E execute main
+bind Sh-M-V paste execute
+bind ^V "aXV" execute
 
 # Open a new void and unnamed buffer
 bind ^N "fecho -n" main
@@ -470,34 +493,37 @@ bind ^D "[Fa[H[A[F6" main
 # Select all
 bind ^A "[1;5Ha[1;5F" main
 
-bind ^Q exit main
-bind ^Q exit help
+# remove trailing whitespace
+bind F10 "r(( +$|$))ar" main
+
+bind ^W exit main
+bind ^W exit help
 
 bind ^S savefile main
-bind M-S writeout main
-
-bind ^F whereis main
-bind ^F whereis help
 
 bind M-F findnext main
 bind M-F findnext help
 
 bind ^B wherewas main
 bind M-B findprevious main
-bind ^R replace main
 
 bind ^Z undo main
 bind ^Y redo main
 bind ^/ comment main
-bind ^G gotoline main
 bind ^L linter main
-bind ^E execute main
 bind M-. recordmacro main
 bind M-, runmacro main
 bind M-Space complete all
+bind ^Space complete all
+bind ^I complete main
+
 bind M-} findbracket main  # go to the matching bracket
 
 ##ideas
 # - Autocomplete command line.
 # - Autoclose bracket.
 # - Keyword name instead color name.
+# - Remove trailing whitespace
+# - Mouse support under raw input.
+# - System copy and paste.
+# - Comma separated menus.
