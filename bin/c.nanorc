@@ -1,0 +1,45 @@
+## ==== C ====
+syntax c "\.c$"
+
+comment "// "
+
+# Constants.
+color normal "\<[A-Z_][0-9A-Z_]*\>"
+
+# Labels.
+color magenta "^[[:blank:]]*[A-Z_a-z][0-9A-Z_a-z]*:[[:blank:]]*$"
+color normal ":[[:blank:]]*$"
+
+# Types and related keywords.
+color yellow "\<(auto|bool|char|const|double|enum|extern|float|inline|int|long|restrict|short|signed|sizeof|static|struct|typedef|union|unsigned|void)\>"
+color yellow "\<([[:lower:]][[:lower:]_]*|(u_?)?int(8|16|32|64))_t\>"
+color yellow "\<(_(Alignas|Alignof|Atomic|Bool|Complex|Generic|Imaginary|Noreturn|Static_assert|Thread_local))\>"
+color yellow "\<(class|explicit|friend|mutable|namespace|override|private|protected|public|register|template|this|typename|using|virtual|volatile)\>"
+
+# Flow control.
+color yellow "\<(if|else|for|while|do|switch|case|default)\>"
+color yellow "\<(try|throw|catch|operator|new|delete)\>"
+color yellow "\<(break|continue|goto|return)\>"
+
+# Single-quoted stuff (characters, backslash escapes, hex and octal byte codes).
+color green "'([^'\]|\\(["'\abfnrtv]|x[[:xdigit:]]{1,2}|[0-3]?[0-7]{1,2}))'"
+
+# GCC builtins.
+color yellow "__attribute__[[:blank:]]*\(\([^)]*\)\)" "__(aligned|asm|builtin|hidden|inline|packed|restrict|section|typeof|weak)__"
+
+# Strings and names of included files.
+color green ""([^"]|\\")*"" "#[[:blank:]]*include[[:blank:]]*<[^>]+>"
+
+# Preprocessor directives.
+color yellow start="^[[:blank:]]*#[[:blank:]]*(if(n?def)?|elif|warning|error|pragma)\>" end="(\`|[^\])$"
+color yellow "^[[:blank:]]*#[[:blank:]]*((define|else|endif|include(_next)?|line|undef)\>|$)"
+
+# Comments.
+color red "//.*"
+color red start="/\*" end="\*/"
+
+# Reminders.
+color brightwhite,yellow "\<(FIXME|TODO|XXX)\>"
+
+# Trailing whitespace.
+color ,green "[[:space:]]+$"

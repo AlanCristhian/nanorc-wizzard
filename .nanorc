@@ -137,7 +137,7 @@ set positionlog
 # set quotestr "^([ 	]*([!#%:;>|}]|//))+"
 
 ## Try to work around a mismatching terminfo terminal description.
-set rawsequences
+#set rawsequences
 
 ## Fix Backspace/Delete confusion problem.
 # set rebinddelete
@@ -217,7 +217,7 @@ set statuscolor white,lightblack
 set errorcolor white,lightred
 set spotlightcolor white,lightyellow
 set selectedcolor white,lightmagenta
-set stripecolor lightblack
+set stripecolor black
 set scrollercolor lightblack,black
 set numbercolor bold,white
 # set keycolor cyan
@@ -241,140 +241,17 @@ set numbercolor bold,white
 ## If <Tab> should always produce four spaces when editing a Python file,
 ## independent of the settings of 'tabsize' and 'tabstospaces':
 
-## ==== Mastropiero ====
+
+## ==== Custom syntax deffinitions ====
 
 include "~/rep/mastropiero/mastropiero.nanorc"
-
-
-## ==== C ====
-extendsyntax c comment "// "
-
-
-# Constants.
-extendsyntax c color normal "\<[A-Z_][0-9A-Z_]*\>"
-
-# Labels.
-extendsyntax c color magenta "^[[:blank:]]*[A-Z_a-z][0-9A-Z_a-z]*:[[:blank:]]*$"
-extendsyntax c color normal ":[[:blank:]]*$"
-
-# Types and related keywords.
-extendsyntax c color yellow "\<(auto|bool|char|const|double|enum|extern|float|inline|int|long|restrict|short|signed|sizeof|static|struct|typedef|union|unsigned|void)\>"
-extendsyntax c color yellow "\<([[:lower:]][[:lower:]_]*|(u_?)?int(8|16|32|64))_t\>"
-extendsyntax c color yellow "\<(_(Alignas|Alignof|Atomic|Bool|Complex|Generic|Imaginary|Noreturn|Static_assert|Thread_local))\>"
-extendsyntax c color yellow "\<(class|explicit|friend|mutable|namespace|override|private|protected|public|register|template|this|typename|using|virtual|volatile)\>"
-
-# Flow control.
-extendsyntax c color yellow "\<(if|else|for|while|do|switch|case|default)\>"
-extendsyntax c color yellow "\<(try|throw|catch|operator|new|delete)\>"
-extendsyntax c color yellow "\<(break|continue|goto|return)\>"
-
-# Single-quoted stuff (characters, backslash escapes, hex and octal byte codes).
-extendsyntax c color green "'([^'\]|\\(["'\abfnrtv]|x[[:xdigit:]]{1,2}|[0-3]?[0-7]{1,2}))'"
-
-# GCC builtins.
-extendsyntax c color yellow "__attribute__[[:blank:]]*\(\([^)]*\)\)" "__(aligned|asm|builtin|hidden|inline|packed|restrict|section|typeof|weak)__"
-
-# Strings and names of included files.
-extendsyntax c color green ""([^"]|\\")*"" "#[[:blank:]]*include[[:blank:]]*<[^>]+>"
-
-# Preprocessor directives.
-extendsyntax c color yellow start="^[[:blank:]]*#[[:blank:]]*(if(n?def)?|elif|warning|error|pragma)\>" end="(\`|[^\])$"
-extendsyntax c color yellow "^[[:blank:]]*#[[:blank:]]*((define|else|endif|include(_next)?|line|undef)\>|$)"
-
-# Comments.
-extendsyntax c color red "//.*"
-extendsyntax c color red start="/\*" end="\*/"
-
-# Reminders.
-extendsyntax c color brightwhite,yellow "\<(FIXME|TODO|XXX)\>"
-
-# Trailing whitespace.
-extendsyntax c color ,green "[[:space:]]+$"
-
-
-## ==== Python ====
-
-# Operators
-extendsyntax python color yellow "(\+|/|//|&|\^|~|\||\*\*|=|<<|%|\*|@|-|>>|<|<=|==|!=|>=|>)"
-extendsyntax python color normal "(->|\\)"
-
-extendsyntax python tabgives "    "
-extendsyntax python comment "# "
-extendsyntax python linter py -3.10 -m mypy --strict
-
-# Function definitions.
-extendsyntax python color blue "(def|class) \<([0-9A-Za-z_]+)\>"
-
-# Keywords
-extendsyntax python color yellow "\<(False|None|True|and|as|assert|async|await|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield)\>"
-
-# Builtin functions
-extendsyntax python color magenta "\<(ArithmeticError|AssertionError|AttributeError|BaseException|BaseExceptionGroup|BlockingIOError|BrokenPipeError|BufferError|BytesWarning|ChildProcessError|ConnectionAbortedError|ConnectionError|ConnectionRefusedError|ConnectionResetError|DeprecationWarning|EOFError|Ellipsis|EncodingWarning|EnvironmentError|Exception|ExceptionGroup|FileExistsError|FileNotFoundError|FloatingPointError|FutureWarning|GeneratorExit|IOError|ImportError|ImportWarning|IndentationError|IndexError|InterruptedError|IsADirectoryError|KeyError|KeyboardInterrupt|LookupError|MemoryError|ModuleNotFoundError|NameError|NotADirectoryError|NotImplemented|NotImplementedError|OSError|OverflowError|PendingDeprecationWarning|PermissionError|ProcessLookupError|RecursionError|ReferenceError|ResourceWarning|RuntimeError|RuntimeWarning|StopAsyncIteration|StopIteration|SyntaxError|SyntaxWarning|SystemError|SystemExit|TabError|TimeoutError|TypeError|UnboundLocalError|UnicodeDecodeError|UnicodeEncodeError|UnicodeError|UnicodeTranslateError|UnicodeWarning|UserWarning|ValueError|Warning|WindowsError|ZeroDivisionError|abs|aiter|all|anext|any|ascii|bin|bool|breakpoint|bytearray|bytes|callable|chr|classmethod|compile|complex|copyright|credits|delattr|dict|dir|divmod|enumerate|eval|exec|exit|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|isinstance|issubclass|iter|len|license|list|locals|map|max|memoryview|min|next|object|oct|open|ord|pow|print|property|quit|range|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|vars|zip|self|cls)\>"
-
-# Dunder methods
-extendsyntax python color magenta "\<(__abs__|__add__|__aenter__|__aexit__|__aiter__|__and__|__anext__|__annotations__|__await__|__bases__|__bool__|__bytes__|__call__|__ceil__|__class__|__classcell__|__closure__|__code__|__complex__|__contains__|__defaults__|__del__|__delattr__|__delete__|__delitem__|__dict__|__dir__|__divmod__|__doc__|__enter__|__eq__|__exit__|__file__|__float__|__floor__|__floordiv__|__format__|__func__|__future__|__ge__|__get__|__getattr__|__getattribute__|__getitem__|__globals__|__gt__|__hash__|__iadd__|__iand__|__ifloordiv__|__ilshift__|__imatmul__|__imod__|__import__|__imul__|__index__|__init__|__instancecheck__|__int__|__invert__|__ior__|__ipow__|__irshift__|__isub__|__iter__|__itruediv__|__ixor__|__kwdefaults__|__le__|__len__|__lshift__|__lt__|__matmul__|__missing__|__mod__|__module__|__mro__|__mul__|__name__|__ne__|__neg__|__new__|__next__|__objclass__|__or__|__pos__|__pow__|__prepare__|__qualname__|__radd__|__rand__|__rdivmod__|__repr__|__reversed__|__rfloordiv__|__rlshift__|__rmatmul__|__rmod__|__rmul__|__ror__|__round__|__rpow__|__rrshift__|__rshift__|__rsub__|__rtruediv__|__rxor__|__self__|__set__|__setattr__|__setitem__|__slots__|__str__|__sub__|__subclasscheck__|__traceback__|__truediv__|__trunc__|__weakref__|__xor__)\>"
-
-# Mono-quoted strings
-extendsyntax python color green "'([^'\]|\\.)*'|"([^"\]|\\.)*"|'''|""""
-extendsyntax python color green "'''|""""
-
-# Comments
-extendsyntax python color red "(^|[[:blank:]])#.*"
-
-# Triple-quoted strings.
-extendsyntax python color green start="'''([^'),]|$)" end="(^|[^(\])'''"
-extendsyntax python color green start=""""([^"),]|$)" end="(^|[^(\])""""
-
-## If <Tab> should always produce an actual TAB when editing a Makefile:
-# extendsyntax makefile tabgives "	"
-
-# Constants
-#extendsyntax python color magenta "\<([[:digit:]]+)\>"
-#extendsyntax python color magenta "\<(([[:upper:]]|_)([[:upper:]]|_|[[:digit:]])+)\>"
-
-# Comments
-#extendsyntax python color red start="#" end="\n"
-extendsyntax python color red "^#.+"
-
-# Decorators
-extendsyntax python color blue "@([[:alpha:]]|_)([[:alpha:]]|_|\.|[[:digit:]])+"
-
-## ==== MarkDown ====
-
-extendsyntax markdown color magenta "^[ 	]*>.*"
-
-# List-item markers:
-extendsyntax markdown color magenta "^(    |	)* ? ? ?(\*|\+|-|[1-9]+\.)( +|	)"
-
-# Emphasis and strong:
-extendsyntax markdown color red "\*[^* 	][^*]*\*|_[^_ 	][^_]*_"
-extendsyntax markdown color red "\*\*[^*]+\*\*|__[^_]+__"
-
-# Strikethrough:
-extendsyntax markdown color red "~~[^~]+~~"
-
-# Line breaks:
-extendsyntax markdown color ,blue "  $"
-
-# URLs and links:
-extendsyntax markdown color blue "\[[^]]+\]\([^)]+\)"
-extendsyntax markdown color blue "!?\[[^]]+\]"
-
-# Code snippet, indented code, and fenced code:
-extendsyntax markdown color magenta "`[^`]+`"
-extendsyntax markdown color magenta "^(    |	)+ *([^*+0-9> 	-]|[*+-]\S|[0-9][^.]).*"
-extendsyntax markdown color magenta start="```" end="```$"
-
-# Headings and the underlining of headings:
-extendsyntax markdown color yellow "^#.*"
-extendsyntax markdown color yellow "^(=+|-+)$"
-
-# HTML tags and comments:
-extendsyntax markdown color red "<[^>]+>"
-extendsyntax markdown color red start="<!--" end="-->"
+include "~/bin/python.nanorc"
+include "~/bin/markdown.nanorc"
+include "~/bin/c.nanorc"
 
 
 ## === Key bindings ===
+
 ## For all details, see 'man nanorc', section REBINDING KEYS.
 
 ## If you want to suspend nano with one keystroke (instead of with ^T^Z):
@@ -442,8 +319,8 @@ unbind Ins all
 bind Sh-M-X cut main
 bind Sh-M-V paste main
 bind Sh-M-C copy main
-bind ^C "XaV|nano_windows_copy" main
-bind ^X "XaV|nano_windows_copy" main
+bind ^C "|nano_windows_copy" main
+bind ^X "|nano_windows_copy" main
 bind ^V "nano_wsl_paste" main
 
 ## SEARCH: paste
@@ -515,7 +392,7 @@ bind M-. recordmacro main
 bind M-, runmacro main
 bind M-Space complete all
 bind ^Space complete all
-bind ^I complete main
+#bind ^I complete main
 
 bind M-} findbracket main  # go to the matching bracket
 

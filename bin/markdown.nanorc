@@ -1,0 +1,34 @@
+## ==== MarkDown ====
+syntax markdown "\.md$"
+
+color magenta "^[ 	]*>.*"
+
+# List-item markers:
+color magenta "^(    |	)* ? ? ?(\*|\+|-|[1-9]+\.)( +|	)"
+
+# Emphasis and strong:
+color red "\*[^* 	][^*]*\*|_[^_ 	][^_]*_"
+color red "\*\*[^*]+\*\*|__[^_]+__"
+
+# Strikethrough:
+color red "~~[^~]+~~"
+
+# Line breaks:
+color ,blue "  $"
+
+# URLs and links:
+color blue "\[[^]]+\]\([^)]+\)"
+color blue "!?\[[^]]+\]"
+
+# Code snippet, indented code, and fenced code:
+color magenta "`[^`]+`"
+color magenta "^(    |	)+ *([^*+0-9> 	-]|[*+-]\S|[0-9][^.]).*"
+color magenta start="```" end="```$"
+
+# Headings and the underlining of headings:
+color yellow "^#.*"
+color yellow "^(=+|-+)$"
+
+# HTML tags and comments:
+color red "<[^>]+>"
+color red start="<!--" end="-->"

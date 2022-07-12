@@ -1,0 +1,47 @@
+## ==== Python ====
+syntax c "\.py$"
+
+# Operators
+color yellow "(\+|/|//|&|\^|~|\||\*\*|=|<<|%|\*|@|-|>>|<|<=|==|!=|>=|>)"
+color normal "(->|\\)"
+
+ tabgives "    "
+ comment "# "
+ linter py -3.10 -m mypy --strict
+
+# Function definitions.
+color blue "(def|class) \<([0-9A-Za-z_]+)\>"
+
+# Keywords
+color yellow "\<(False|None|True|and|as|assert|async|await|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield)\>"
+
+# Builtin functions
+color magenta "\<(ArithmeticError|AssertionError|AttributeError|BaseException|BaseExceptionGroup|BlockingIOError|BrokenPipeError|BufferError|BytesWarning|ChildProcessError|ConnectionAbortedError|ConnectionError|ConnectionRefusedError|ConnectionResetError|DeprecationWarning|EOFError|Ellipsis|EncodingWarning|EnvironmentError|Exception|ExceptionGroup|FileExistsError|FileNotFoundError|FloatingPointError|FutureWarning|GeneratorExit|IOError|ImportError|ImportWarning|IndentationError|IndexError|InterruptedError|IsADirectoryError|KeyError|KeyboardInterrupt|LookupError|MemoryError|ModuleNotFoundError|NameError|NotADirectoryError|NotImplemented|NotImplementedError|OSError|OverflowError|PendingDeprecationWarning|PermissionError|ProcessLookupError|RecursionError|ReferenceError|ResourceWarning|RuntimeError|RuntimeWarning|StopAsyncIteration|StopIteration|SyntaxError|SyntaxWarning|SystemError|SystemExit|TabError|TimeoutError|TypeError|UnboundLocalError|UnicodeDecodeError|UnicodeEncodeError|UnicodeError|UnicodeTranslateError|UnicodeWarning|UserWarning|ValueError|Warning|WindowsError|ZeroDivisionError|abs|aiter|all|anext|any|ascii|bin|bool|breakpoint|bytearray|bytes|callable|chr|classmethod|compile|complex|copyright|credits|delattr|dict|dir|divmod|enumerate|eval|exec|exit|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|isinstance|issubclass|iter|len|license|list|locals|map|max|memoryview|min|next|object|oct|open|ord|pow|print|property|quit|range|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|vars|zip|self|cls)\>"
+
+# Dunder methods
+color magenta "\<(__abs__|__add__|__aenter__|__aexit__|__aiter__|__and__|__anext__|__annotations__|__await__|__bases__|__bool__|__bytes__|__call__|__ceil__|__class__|__classcell__|__closure__|__code__|__complex__|__contains__|__defaults__|__del__|__delattr__|__delete__|__delitem__|__dict__|__dir__|__divmod__|__doc__|__enter__|__eq__|__exit__|__file__|__float__|__floor__|__floordiv__|__format__|__func__|__future__|__ge__|__get__|__getattr__|__getattribute__|__getitem__|__globals__|__gt__|__hash__|__iadd__|__iand__|__ifloordiv__|__ilshift__|__imatmul__|__imod__|__import__|__imul__|__index__|__init__|__instancecheck__|__int__|__invert__|__ior__|__ipow__|__irshift__|__isub__|__iter__|__itruediv__|__ixor__|__kwdefaults__|__le__|__len__|__lshift__|__lt__|__matmul__|__missing__|__mod__|__module__|__mro__|__mul__|__name__|__ne__|__neg__|__new__|__next__|__objclass__|__or__|__pos__|__pow__|__prepare__|__qualname__|__radd__|__rand__|__rdivmod__|__repr__|__reversed__|__rfloordiv__|__rlshift__|__rmatmul__|__rmod__|__rmul__|__ror__|__round__|__rpow__|__rrshift__|__rshift__|__rsub__|__rtruediv__|__rxor__|__self__|__set__|__setattr__|__setitem__|__slots__|__str__|__sub__|__subclasscheck__|__traceback__|__truediv__|__trunc__|__weakref__|__xor__)\>"
+
+# Mono-quoted strings
+color green "'([^'\]|\\.)*'|"([^"\]|\\.)*"|'''|""""
+color green "'''|""""
+
+# Comments
+color red "(^|[[:blank:]])#.*"
+
+# Triple-quoted strings.
+color green start="'''([^'),]|$)" end="(^|[^(\])'''"
+color green start=""""([^"),]|$)" end="(^|[^(\])""""
+
+## If <Tab> should always produce an actual TAB when editing a Makefile:
+# extendsyntax makefile tabgives "	"
+
+# Constants
+# color magenta "\<([[:digit:]]+)\>"
+# color magenta "\<(([[:upper:]]|_)([[:upper:]]|_|[[:digit:]])+)\>"
+
+# Comments
+# color red start="#" end="\n"
+color red "^#.+"
+
+# Decorators
+color blue "@([[:alpha:]]|_)([[:alpha:]]|_|\.|[[:digit:]])+"

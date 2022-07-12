@@ -41,6 +41,7 @@ css = "normal"
 [buildPlans.alan-fixed-slab.metric-override]
 xHeight = 492
 leading = 1250
+symbolMid = 322
 
 [collectPlans.alan-fixed-slab]
 from = ["alan-fixed-slab"]
