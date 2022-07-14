@@ -1,21 +1,21 @@
 ForegroundColour=204,204,204
 BackgroundColour=44,37,37
-CursorColour=253,157,79
+CursorColour=255,128,0
 
 Black=44,37,37
-Red=238,122,133
-Yellow=196,144,59
-Green=119,171,54
-Cyan=66,183,121
-Blue=76,170,210
-Magenta=215,121,221
-White=255,255,255,
+Red=239,118,118
+Yellow=206,130,53
+Green=131,158,61
+Cyan=71,179,136
+Blue=71,179,223
+Magenta=206,130,208
+White=255,255,255
 
 BoldBlack=0,0,0
-BoldRed=192,76,88
-BoldYellow=150,98,13
-BoldGreen=73,125,8
-BoldCyan=20,137,75
-BoldBlue=30,124,165
-BoldMagenta=169,75,175
+BoldRed=193,72,72
+BoldYellow=160,85,7
+BoldGreen=85,112,15
+BoldCyan=25,133,90
+BoldBlue=25,133,177
+BoldMagenta=160,85,162
 BoldWhite=128,128,128
