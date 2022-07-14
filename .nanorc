@@ -1,4 +1,4 @@
-## /c/Program\ Files/Git/usr/share/mintty/themes/alan_light
+## /c/Program\ Files/Git/usr/share/mintty/themes/coffee_dark
 ## Sample initialization file for GNU nano.
 ##
 ## For the options that take parameters, the default value is shown.
@@ -206,7 +206,7 @@ set wordchars "_"
 ## of a single character, and without affecting the cutbuffer).
 set zap
 
-## Hide the bars plus help lines and use the whole terminal as edit area.
+## Hide the bars plus help lines and use the whole terminal as edit area.aaaaaaaa
 # set zero
 
 ## Paint the interface elements of nano.  These are examples; there are
@@ -217,38 +217,17 @@ set statuscolor white,lightblack
 set errorcolor white,lightred
 set spotlightcolor white,lightyellow
 set selectedcolor white,lightmagenta
-set stripecolor black
+set stripecolor white,black
 set scrollercolor lightblack,black
-set numbercolor bold,white
-# set keycolor cyan
-# set functioncolor green
+set numbercolor lightwhite
+set keycolor cyan
+set functioncolor green
 
 ## === Syntax coloring ===
 ## For all details, see 'man nanorc', section SYNTAX HIGHLIGHTING.
 
-## To include most of the existing syntax definitions, you can do:
-# include "@PKGDATADIR@/*.nanorc"
-
-## Or you can select just the ones you need.  For example:
-# include "@PKGDATADIR@/html.nanorc"
-# include "@PKGDATADIR@/python.nanorc"
-# include "@PKGDATADIR@/sh.nanorc"
-
-## In @PKGDATADIR@/extra/ you can find some syntaxes that are
-## specific for certain distros or for some less common languages.
-
-
-## If <Tab> should always produce four spaces when editing a Python file,
-## independent of the settings of 'tabsize' and 'tabstospaces':
-
-
-## ==== Custom syntax deffinitions ====
-
 include "~/rep/mastropiero/mastropiero.nanorc"
-include "~/bin/python.nanorc"
-include "~/bin/markdown.nanorc"
-include "~/bin/c.nanorc"
-
+include "~/bin/*.nanorc"
 
 ## === Key bindings ===
 
@@ -317,8 +296,8 @@ unbind Ins all
 
 ## MAIN: copy, cut and paste
 bind Sh-M-X cut main
-bind Sh-M-V paste main
 bind Sh-M-C copy main
+bind Sh-M-V paste main
 bind ^C "|nano_windows_copy" main
 bind ^X "|nano_windows_copy" main
 bind ^V "nano_wsl_paste" main
@@ -371,19 +350,15 @@ bind ^D "[Fa[H[A[F6" main
 bind ^A "[1;5Ha[1;5F" main
 
 # remove trailing whitespace
-bind F10 "r(( +$|$))ar" main
+bind F10 "r(( +$|$))ar" main
 
 bind ^W exit main
 bind ^W exit help
-
 bind ^S savefile main
-
 bind M-F findnext main
 bind M-F findnext help
-
 bind ^B wherewas main
 bind M-B findprevious main
-
 bind ^Z undo main
 bind ^Y redo main
 bind ^/ comment main
@@ -392,8 +367,6 @@ bind M-. recordmacro main
 bind M-, runmacro main
 bind M-Space complete all
 bind ^Space complete all
-#bind ^I complete main
-
 bind M-} findbracket main  # go to the matching bracket
 
 ##ideas
