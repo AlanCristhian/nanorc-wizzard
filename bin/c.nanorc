@@ -1,5 +1,5 @@
 ## ==== C ====
-syntax c "\.c$"
+syntax c "\.c$|\.h$"
 
 comment "// "
 

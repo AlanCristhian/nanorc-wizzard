@@ -1,4 +1,4 @@
-## /c/Program\ Files/Git/usr/share/mintty/themes/coffee_dark
+## /c/Program\ Files/Git/usr/share/mintty/themes/alan_coffee
 ## Sample initialization file for GNU nano.
 ##
 ## For the options that take parameters, the default value is shown.
@@ -15,7 +15,7 @@
 
 ## When soft line wrapping is enabled, make it wrap lines at blanks
 ## (tabs and spaces) instead of always at the edge of the screen.
-# set atblanks
+set atblanks
 
 ## Automatically indent a newly created line to the same number of
 ## tabs and/or spaces as the preceding line -- or as the next line
@@ -87,7 +87,7 @@ set linenumbers
 ## The opening and closing brackets that are found by a matching-bracket
 ## search.  This may not contain blank characters.  The opening brackets
 ## must come before the closing ones, and they must be in the same order.
-# set matchbrackets "(<[{)>]}"
+set matchbrackets "(<[{)>]}"
 
 ## Suppress the title bar and show the filename plus a cursor-position
 ## percentage in the space of the status bar.
@@ -180,7 +180,7 @@ set tabsize 2
 set tabstospaces
 
 ## Snip whitespace at the end of lines when justifying or hard-wrapping.
-set trimblanks
+#set trimblanks
 
 ## Save files by default in Unix format (also when they were DOS or Mac).
 # set unix
@@ -206,7 +206,7 @@ set wordchars "_"
 ## of a single character, and without affecting the cutbuffer).
 set zap
 
-## Hide the bars plus help lines and use the whole terminal as edit area.aaaaaaaa
+## Hide the bars plus help lines and use the whole terminal as edit area.
 # set zero
 
 ## Paint the interface elements of nano.  These are examples; there are
@@ -365,7 +365,6 @@ bind ^/ comment main
 bind ^L linter main
 bind M-. recordmacro main
 bind M-, runmacro main
-bind M-Space complete all
 bind ^Space complete all
 bind M-} findbracket main  # go to the matching bracket
 
