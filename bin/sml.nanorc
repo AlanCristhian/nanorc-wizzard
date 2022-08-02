@@ -1,0 +1,19 @@
+syntax sml "\.sml$"
+
+# Keywords.
+color yellow "\<(abstype|and|andalso|as|case|datatype|do|else|end|exception|fn|fun|handle|if|in|in|ix|infixr|let|local|nonfix|of|op|open|orelse|raise|rec|then|type|val|with|withtyp|while|eqtype|functor|include|sharing|sig|signature|struct|structure|where)\>"
+color yellow "(\(|\)|\[|\]|\{|\}|\,|\:|\;|\.\.\.|\_|\||=|=>|->|#|\:\>)"
+
+# Comments.
+color red start="\(\*" end="\*\)"
+
+# Constants
+color magenta "~*0x[[:xdigit:]]+|~?0w[[:digit:]]+\>"
+color magenta "~*[[:digit:]]+(\.[[:digit:]]+){0,1}((e|E)~*[[:digit:]]+){0,1}\>"
+
+# Strings
+color green ""([^"]|\\")*""
+
+# Escape sequencies
+color cyan "\\a|\\b|\\t|\\n|\\v|\\f|\\r|\\\^c|\\[[:digit:]]{3,}"
+color cyan "\\u[[:xdigit:]]{4,}|\\\"|\\\\"
