@@ -1,0 +1,7 @@
+#!/bin/sh
+ans=$(</dev/stdin)
+if [ -f ~/bin/nanosnipets/$ans.txt ]; then
+    cat ~/bin/nanosnipets/$ans.txt
+else
+    echo $ans
+fi

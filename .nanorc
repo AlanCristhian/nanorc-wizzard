@@ -11,7 +11,7 @@
 
 ## Make 'nextword' (Ctrl+Right) and 'chopwordright' (Ctrl+Delete)
 ## stop at word ends instead of at beginnings.
-# set afterends
+set afterends
 
 ## When soft line wrapping is enabled, make it wrap lines at blanks
 ## (tabs and spaces) instead of always at the edge of the screen.
@@ -32,7 +32,7 @@ set autoindent
 set boldtext
 
 ## Treat any line with leading whitespace as the beginning of a paragraph.
-# set bookstyle
+#set bookstyle
 
 ## The characters treated as closing brackets when justifying paragraphs.
 ## This may not include any blank characters.  Only closing punctuation,
@@ -43,7 +43,7 @@ set brackets "\"')>]}"
 # set breaklonglines
 
 ## Do case-sensitive searches by default.
-# set casesensitive
+set casesensitive
 
 ## Constantly display the cursor position in the status bar or minibar.
 set constantshow
@@ -144,7 +144,7 @@ set positionlog
 
 ## Do regular-expression searches by default.
 ## Regular expressions are of the extended type (ERE).
-# set regexp
+#set regexp
 
 ## Save a changed buffer automatically on exit; don't prompt.
 # set saveonexit
@@ -174,7 +174,7 @@ set softwrap
 set stateflags
 
 ## Use this tab size instead of the default; it must be greater than 0.
-set tabsize 2
+set tabsize 4
 
 ## Convert each typed tab to the fitting number of spaces.
 set tabstospaces
@@ -217,7 +217,7 @@ set statuscolor white,lightblack
 set errorcolor white,lightred
 set spotlightcolor white,lightyellow
 set selectedcolor white,lightmagenta
-set stripecolor white,black
+set stripecolor lightblack,black
 set scrollercolor lightblack,black
 set numbercolor lightwhite
 set keycolor cyan
@@ -243,7 +243,7 @@ include "~/bin/*.nanorc"
 ## keycode, which is hard-bound to the backspace function.  So, if you
 ## normally use <Backspace> for backspacing and not ^H, you can make
 ## <Ctrl+Backspace> delete the word to the left of the cursor with:
-# bind ^H chopwordleft main
+#bind ^H chopwordleft main
 
 ## For a more mnemonic Comment keystroke (overriding Cut-from-cursor):
 # bind M-K comment main
@@ -271,24 +271,33 @@ bind M-L "Oc[1;6D|sed 's/.*/\L&/'" main
 ## then uncomment these:
 
 ## Unbind weird behaviour
+unbind F2 main
+unbind F3 main
+unbind F4 main
+unbind F5 main
+unbind F6 main
+unbind F7 main
+unbind F8 main
+unbind Ins all
 unbind ^A all  # home
+unbind ^D all
+unbind ^H all  # backspace
 unbind ^K all  # cut
-unbind ^T all  # execute command
 unbind ^O all
+unbind ^Q all  # search backward
+unbind ^R all  # insert new file
+unbind ^T all  # execute command
+unbind ^W all  # whereis
+unbind ^X all
 unbind ^Y all  # one page up
+unbind ^\ all  # replace
+unbind ^] all # autocomplete
+unbind ^Space all
 unbind M-G all # goto
 unbind M-J all  # justify paragraph or regionc
-unbind ^W all  # whereis
 unbind M-3 all  # comment/uncomment line/region
-unbind  ^\ all  # replace
-unbind ^] all # autocomplete
-unbind ^H all  # backspace
-unbind ^R all  # insert new file
 unbind M-] all  # go to the matching bracket
-unbind ^Q all  # search backward
-unbind ^Space all
-unbind ^D all
-unbind Ins all
+unbind M-T main  # cut from cursor to end
 
 ## ========================
 ## Bind copy, cut and paste
@@ -309,15 +318,14 @@ bind Sh-M-V paste search
 bind ^V "aXV" search
 
 ## REPLACE: paste
-bind ^R replace main
 bind ^H replace main
-bind Sh-M-R replace main
+bind Sh-M-H replace main
 bind Sh-M-V paste replace
-bind ^V "aXV" replace
+bind ^V "aXV" replace
 
 ## REPLACEWITH: paste
 bind Sh-M-V paste replacewith
-bind ^V "aXV" replacewith
+bind ^V "aXV" replacewith
 
 ## GOTOLINE: paste
 bind ^G gotoline main
@@ -344,7 +352,7 @@ bind ^V "aXV" execute
 bind ^N "fecho -n" main
 
 # Duplicate line
-bind ^D "[Fa[H[A[F6" main
+bind ^D "[Fa[H[A[F6[B" main
 
 # Select all
 bind ^A "[1;5Ha[1;5F" main
@@ -352,6 +360,17 @@ bind ^A "[1;5Ha[1;5F" main
 # remove trailing whitespace
 bind F10 "r(( +$|$))ar" main
 
+# math
+bind ^Q "math ''[D" main
+
+#tags
+bind ^T "[1;5D<[1;6CC></V>[1;5D[1;5D[1;5C" main
+bind M-T "[1;5D<[1;6CC></V>[1;5D[1;5D[1;5C" main
+
+# Code Snipets
+bind ^R "|bin/nano_snipets" main
+
+bind ^Space complete main
 bind ^W exit main
 bind ^W exit help
 bind ^S savefile main
@@ -365,8 +384,8 @@ bind ^/ comment main
 bind ^L linter main
 bind M-. recordmacro main
 bind M-, runmacro main
-bind ^Space complete all
 bind M-} findbracket main  # go to the matching bracket
+bind ^K suspend main
 
 ##ideas
 # - Autocomplete command line.
@@ -376,3 +395,6 @@ bind M-} findbracket main  # go to the matching bracket
 # - Mouse support under raw input.
 # - System copy and paste.
 # - Comma separated menus.
+# - If ^I are binding to indent and complete first try to complete, if fail,
+#   indent.
+#####################################################################################
