@@ -1,17 +1,2 @@
 #!/bin/sh
-
-#https://www.reddit.com/r/neovim/comments/fyj7mp/neovim_in_wsl_copy_to_windows_clipboard/fn241ig/
-
-if command -v pwsh.exe >/dev/null 2>&1; then
-  pwsh="pwsh.exe"
-elif command -v powershell.exe >/dev/null 2>&1; then
-  pwsh="powershell.exe"
-else
-  exit 1
-fi
-
-pwsh_command="$pwsh -NoProfile -NoLogo -NonInteractive -command"
-git_bash_path="bin/nano_windows_clipboard"
-windows_path="C:\Users\Ruiz\bin\nano_windows_clipboard"
-cat > "${git_bash_path}"
-$pwsh_command "(Get-Content ${git_bash_path} | Out-String -Stream) | Set-Clipboard"
+pwsh -Sta -NoProfile -NoLogo -NonInteractive -command "(\"$(</dev/stdin)\" | Out-String) | Set-Clipboard"

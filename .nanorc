@@ -293,11 +293,15 @@ unbind ^Y all  # one page up
 unbind ^\ all  # replace
 unbind ^] all # autocomplete
 unbind ^Space all
-unbind M-G all # goto
+unbind M-M main  # disable mouse
+unbind M-N main  # disable linenumbers
+unbind M-G all  # goto
 unbind M-J all  # justify paragraph or regionc
 unbind M-3 all  # comment/uncomment line/region
 unbind M-] all  # go to the matching bracket
+unbind M-R main  # replace
 unbind M-T main  # cut from cursor to end
+unbind M-Y main # disable color syntax
 
 ## ========================
 ## Bind copy, cut and paste
@@ -309,7 +313,7 @@ bind Sh-M-C copy main
 bind Sh-M-V paste main
 bind ^C "|nano_windows_copy" main
 bind ^X "|nano_windows_copy" main
-bind ^V "nano_wsl_paste" main
+bind ^V "nano_windows_paste" main
 
 ## SEARCH: paste
 bind ^F whereis main
@@ -348,28 +352,31 @@ bind ^E execute main
 bind Sh-M-V paste execute
 bind ^V "aXV" execute
 
-# Open a new void and unnamed buffer
+## Open a new void and unnamed buffer
 bind ^N "fecho -n" main
 
-# Duplicate line
+## Duplicate line
 bind ^D "[Fa[H[A[F6[B" main
 
-# Select all
+## Select all
 bind ^A "[1;5Ha[1;5F" main
 
-# remove trailing whitespace
+## remove trailing whitespace
 bind F10 "r(( +$|$))ar" main
 
-# math
+## math
 bind ^Q "math ''[D" main
 
-#tags
+## tags
 bind ^T "[1;5D<[1;6CC></V>[1;5D[1;5D[1;5C" main
 bind M-T "[1;5D<[1;6CC></V>[1;5D[1;5D[1;5C" main
 
-# Code Snipets
-bind ^R "|bin/nano_snipets" main
+## Snippet
+bind M-R "|nano_snippets%%a[C[C" main
+bind M-N "%%a[C[C" main
 
+## math on selectec text
+bind M-M "|math" main
 bind ^Space complete main
 bind ^W exit main
 bind ^W exit help

@@ -1,0 +1,2 @@
+#!/bin/sh
+pwsh -Sta -NoProfile -NoLogo -NonInteractive -command Get-Clipboard | sed -z 's/\n$//' | head -c -1
