@@ -311,9 +311,9 @@ unbind M-Y main # disable color syntax
 bind Sh-M-X cut main
 bind Sh-M-C copy main
 bind Sh-M-V paste main
-bind ^C "|nano_windows_copy" main
-bind ^X "|nano_windows_copy" main
-bind ^V "nano_windows_paste" main
+bind ^C "|py -3.11 -m pyperclip -c" main
+bind ^X "|py -3.11 -m pyperclip -c" main
+bind ^V "py -3.11 -m pyperclip -p" main
 
 ## SEARCH: paste
 bind ^F whereis main
