@@ -260,6 +260,7 @@ include "~/bin/*.nanorc"
 ## (These effectively do a Ctrl+Right followed by a Shift+Ctrl+Left,
 ## and then pipe the selected text through a sed command.)
 unbind M-L main
+
 bind Sh-M-U "|sed 's/.*/\U&/'" main
 bind M-U "Oc[1;6D|sed 's/.*/\U&/'" main
 
@@ -278,10 +279,13 @@ unbind F5 main
 unbind F6 main
 unbind F7 main
 unbind F8 main
+unbind F9 main
+unbind F12 main
 unbind Ins all
 unbind ^A all  # home
 unbind ^D all
 unbind ^H all  # backspace
+#unbind ^I main # identation
 unbind ^K all  # cut
 unbind ^O all
 unbind ^Q all  # search backward
@@ -300,7 +304,9 @@ unbind M-J all  # justify paragraph or regionc
 unbind M-3 all  # comment/uncomment line/region
 unbind M-] all  # go to the matching bracket
 unbind M-R main  # replace
+unbind M-Q main  # search next occurence backward
 unbind M-T main  # cut from cursor to end
+unbind M-W main  # search next occurence forward
 unbind M-Y main # disable color syntax
 
 ## ========================
@@ -311,9 +317,9 @@ unbind M-Y main # disable color syntax
 bind Sh-M-X cut main
 bind Sh-M-C copy main
 bind Sh-M-V paste main
-bind ^C "|py -3.11 -m pyperclip -c" main
-bind ^X "|py -3.11 -m pyperclip -c" main
-bind ^V "py -3.11 -m pyperclip -p" main
+bind ^C "| nano_windows_copy" main
+bind ^X "| nano_windows_copy" main
+bind ^V "nano_windows_paste" main
 
 ## SEARCH: paste
 bind ^F whereis main
@@ -361,8 +367,9 @@ bind ^D "[Fa[H[A[F6[B" main
 ## Select all
 bind ^A "[1;5Ha[1;5F" main
 
-## remove trailing whitespace
-bind F10 "r(( +$|$))ar" main
+## Remove trailing whitespace on save
+bind ^S savefile main
+bind F10 "|sed 's/\s\+$//'W" main
 
 ## math
 bind ^Q "math ''[D" main
@@ -377,10 +384,13 @@ bind M-N "%%a[C[C" main
 
 ## math on selectec text
 bind M-M "|math" main
+
+## sort lines
+bind F9 "| sort" main
+
 bind ^Space complete main
 bind ^W exit main
 bind ^W exit help
-bind ^S savefile main
 bind M-F findnext main
 bind M-F findnext help
 bind ^B wherewas main
