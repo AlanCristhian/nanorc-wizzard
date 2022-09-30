@@ -386,7 +386,7 @@ bind M-N "%%a[C[C" main
 bind M-M "|math" main
 
 ## sort lines
-bind F9 "| sort" main
+bind F9 "| sort | sed -z 's/\n$//'" main
 
 bind ^Space complete main
 bind ^W exit main
