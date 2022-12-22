@@ -110,7 +110,7 @@ set mouse
 set nohelp
 
 ## Don't automatically add a newline when a file does not end with one.
-# set nonewlines
+set nonewlines
 
 ## Set operating directory.  nano will not read or write files outside
 ## this directory and its subdirectories.  Also, the current directory
@@ -261,15 +261,16 @@ include "~/bin/*.nanorc"
 ## and then pipe the selected text through a sed command.)
 unbind M-L main
 
-bind Sh-M-U "|sed 's/.*/\U&/'" main
-bind M-U "Oc[1;6D|sed 's/.*/\U&/'" main
+bind Sh-M-U "{nextword}{mark}{prevword}{execute}|sed 's/.*/\U&/'{enter}" main
+bind M-U "{nextword}{mark}{prevword}{execute}|sed 's/.*/\U&/'{enter}" main
 
-bind Sh-M-L "|sed 's/.*/\L&/'" main
-bind M-L "Oc[1;6D|sed 's/.*/\L&/'" main
+bind Sh-M-L "{nextword}{mark}{prevword}{execute}|sed 's/.*/\L&/'{enter}" main
+bind M-L "{nextword}{mark}{prevword}{execute}|sed 's/.*/\L&/'{enter}" main
 
 ## If you would like nano to have keybindings that are more "usual",
 ## such as ^O for Open, ^F for Find, ^H for Help, and ^Q for Quit,
-## then uncomment these:
+## then uncomment |sed 's/.*/\L&/'
+
 
 ## Unbind weird behaviour
 unbind F2 main
@@ -309,85 +310,8 @@ unbind M-T main  # cut from cursor to end
 unbind M-W main  # search next occurence forward
 unbind M-Y main # disable color syntax
 
-## ========================
-## Bind copy, cut and paste
-## ========================
-
-## MAIN: copy, cut and paste
-bind Sh-M-X cut main
-bind Sh-M-C copy main
-bind Sh-M-V paste main
-bind ^C "| nano_windows_copy" main
-bind ^X "| nano_windows_copy" main
-bind ^V "nano_windows_paste" main
-
-## SEARCH: paste
-bind ^F whereis main
-bind ^F whereis help
-bind Sh-M-V paste search
-bind ^V "aXV" search
-
-## REPLACE: paste
-bind ^H replace main
-bind Sh-M-H replace main
-bind Sh-M-V paste replace
-bind ^V "aXV" replace
-
-## REPLACEWITH: paste
-bind Sh-M-V paste replacewith
-bind ^V "aXV" replacewith
-
-## GOTOLINE: paste
-bind ^G gotoline main
-bind Sh-M-V paste gotoline
-bind ^V "aXV" gotoline
-
-## WRITEOUT: paste
-bind Sh-M-S writeout main
-bind ^V paste writeout
-bind M-S "aXS" main
-
-## INSERT: Open file in new buffer and paste
-bind Sh-M-O insert main
-bind ^O "Of" main
-bind Sh-M-V paste insert
-bind ^V "aXV" insert
-
-## EXECUTE: paste
-bind ^E execute main
-bind Sh-M-V paste execute
-bind ^V "aXV" execute
-
-## Open a new void and unnamed buffer
-bind ^N "fecho -n" main
-
-## Duplicate line
-bind ^D "[Fa[H[A[F6[B" main
-
-## Select all
-bind ^A "[1;5Ha[1;5F" main
-
-## Remove trailing whitespace on save
-bind ^S savefile main
-bind F10 "|sed 's/\s\+$//'W" main
-
-## math
-bind ^Q "math ''[D" main
-
-## tags
-bind ^T "[1;5D<[1;6CC></V>[1;5D[1;5D[1;5C" main
-bind M-T "[1;5D<[1;6CC></V>[1;5D[1;5D[1;5C" main
-
-## Snippet
-bind M-R "|nano_snippets%%a[C[C" main
-bind M-N "%%a[C[C" main
-
-## math on selectec text
-bind M-M "|math" main
-
-## sort lines
-bind F9 "| sort | sed -z 's/\n$//'" main
-
+## Enable or disable soft wrapping
+bind M-W softwrap main
 bind ^Space complete main
 bind ^W exit main
 bind ^W exit help
@@ -403,13 +327,79 @@ bind M-. recordmacro main
 bind M-, runmacro main
 bind M-} findbracket main  # go to the matching bracket
 bind ^K suspend main
+bind ^Q cancel all
+
+
+## ========================
+## Bind copy, cut and paste
+## ========================
+
+## MAIN: copy, cut and paste
+bind Sh-M-X cut main
+bind Sh-M-C copy main
+bind Sh-M-V paste main
+bind ^C "{execute}|clp{enter}{undo}" main
+bind ^X "{execute}|clp{enter}" main
+bind ^V "{execute}clp{enter}" main
+
+## SEARCH: paste
+bind ^F whereis main
+bind ^F whereis help
+bind ^V "{cancel}{mark}{execute}clp{enter}{cut}{whereis}{paste}" search
+
+## REPLACE: paste
+bind ^H replace main
+bind ^V "{cancel}{mark}{execute}clp{enter}{cut}{replace}{paste}" replace
+
+## REPLACEWITH: paste
+bind ^V "{cancel}{mark}{execute}clp{enter}{cut}{replace}{enter}{paste}" replacewith
+
+## GOTOLINE: paste
+bind ^G gotoline main
+bind ^V "{cancel}{mark}{execute}clp{enter}{cut}{gotoline}{paste}" gotoline
+
+## WRITEOUT: paste
+bind M-S writeout main
+bind ^V "{cancel}{mark}{execute}clp{enter}{cut}{writeout}{paste}" writeout
+
+## INSERT: Open file in new buffer and paste
+bind ^O "{insert}{flipnewbuffer}" main
+bind ^V "{cancel}{mark}{execute}clp{enter}{cut}{insert}{flipnewbuffer}{paste}" insert
+
+## EXECUTE: paste
+bind ^E execute main
+bind ^V "{cancel}{mark}{execute}clp{enter}{cut}{execute}{paste}" execute
+
+## Open a new void and unnamed buffer
+bind ^N "{execute}{flipnewbuffer}echo -n{enter}" main
+
+## Duplicate line
+bind ^D "{home}{mark}{end}{copy}{enter}{paste}{end}" main
+
+## Select all
+bind ^A "{firstline}{home}{mark}{lastline}{end}" main
+
+## Remove trailing whitespace on save
+bind ^S savefile main
+bind F10 "{execute}|sed 's/\s\+$//'{enter}" main
+
+## tags
+bind M-T "{mark}{prevword}{copy}<{nextword}></{paste}>{prevword}{prevword}{nextword}" main
+
+## Snippet
+bind M-R "{mark}{prevword}{execute}|nano_snippets{enter}{home}{whereis}%%{enter}{mark}{right}{right}{delete}" main
+bind M-N "{whereis}%%{enter}{mark}{right}{right}{delete}" main
+
+## math on selectec text
+bind M-M "{execute}|math{enter}" main
+
+## sort lines
+bind F9 "{execute}| sort | sed -z 's/\n$//'{enter}" main
 
 ##ideas
 # - Autocomplete command line.
 # - Autoclose bracket.
 # - Keyword name instead color name.
-# - Remove trailing whitespace
-# - Mouse support under raw input.
 # - System copy and paste.
 # - Comma separated menus.
 # - If ^I are binding to indent and complete first try to complete, if fail,
