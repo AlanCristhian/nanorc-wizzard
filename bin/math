@@ -1,0 +1,8 @@
+#!/c/Users/Ruiz/bin/env/Scripts/python
+
+from math import *
+import sys
+
+expression = sys.stdin.readline()
+result = eval(expression)
+print(result, end="")

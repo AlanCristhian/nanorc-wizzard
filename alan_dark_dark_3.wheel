@@ -1,0 +1,8 @@
+[wheel]
+number = 6
+start = 36.17
+saturation = 100.0
+luminosity = 42.0
+background = gray20
+outline = 1
+color_space = P-HSL

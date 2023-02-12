@@ -1,0 +1,27 @@
+# Name: alan_dark_saturated
+# Author: Alan Cristhian Ruiz
+# Contact: alancristhian@protonmail.com
+
+ForegroundColour=206,206,206
+BackgroundColour=36,36,36
+CursorColour=206,206,206
+
+Black=36,36,36
+BoldBlack=0,0,0
+
+White=255,255,255
+BoldWhite=112,112,112
+
+Red=252,126,126
+Yellow=183,154,51
+Green=83,181,78
+Cyan=54,180,180
+Blue=123,152,255
+Magenta=223,125,228
+
+BoldRed=211,79,79
+BoldYellow=138,109,0
+BoldGreen=34,137,28
+BoldCyan=3,135,135
+BoldBlue=76,106,214
+BoldMagenta=180,77,186

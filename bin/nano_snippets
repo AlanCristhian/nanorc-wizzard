@@ -1,0 +1,13 @@
+#!/bin/sh
+ans=$(</dev/stdin)
+if echo "$ans" | grep -i -q '^[_a-zA-Z][_a-zA-Z0-9]*$'
+then
+    if [ -f ~/bin/nanosnippets/$ans ]
+    then
+        cat ~/bin/nanosnippets/$ans
+    else
+        echo -n "$ans%%"
+    fi
+else
+    echo -n "$ans%%"
+fi

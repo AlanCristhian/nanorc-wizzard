@@ -79,7 +79,7 @@ set linenumbers
 ## Enable vim-style lock-files.  This is just to let a vim user know you
 ## are editing a file [s]he is trying to edit and vice versa.  There are
 ## no plans to implement vim-style undo state in these files.
-# set locking
+set locking
 
 ## Fall back to slow libmagic to try and determine an applicable syntax.
 # set magic
@@ -312,6 +312,7 @@ unbind M-Y main # disable color syntax
 
 ## Enable or disable soft wrapping
 bind M-W softwrap main
+
 bind ^Space complete main
 bind ^W exit main
 bind ^W exit help
@@ -328,6 +329,7 @@ bind M-, runmacro main
 bind M-} findbracket main  # go to the matching bracket
 bind ^K suspend main
 bind ^Q cancel all
+bind F6 speller main
 
 
 ## ========================
@@ -393,10 +395,13 @@ bind M-N "{whereis}%%{enter}{mark}{right}{right}{delete}" main
 ## math on selectec text
 bind M-M "{execute}|math{enter}" main
 
-## sort lines
-bind F9 "{execute}| sort | sed -z 's/\n$//'{enter}" main
+## reverse order
+bind F2 "{execute}|tac{enter}" main
 
-##ideas
+## sort lines
+#bind F9 "{execute}|sort -f|sed -z 's/\n$//'{enter}" main
+bind F9 "{execute}|sort -f{enter}" main
+
 # - Autocomplete command line.
 # - Autoclose bracket.
 # - Keyword name instead color name.
@@ -404,3 +409,4 @@ bind F9 "{execute}| sort | sed -z 's/\n$//'{enter}" main
 # - Comma separated menus.
 # - If ^I are binding to indent and complete first try to complete, if fail,
 #   indent.
+# - Mouse scroll without moving the cursor.

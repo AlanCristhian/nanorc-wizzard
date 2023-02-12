@@ -1,0 +1,27 @@
+# Name: alan_dark_3
+# Author: Alan Cristhian Ruiz
+# Contact: alancristhian@protonmail.com
+
+ForegroundColour=206,206,206
+BackgroundColour=36,36,36
+CursorColour=206,206,206
+
+Black=36,36,36
+BoldBlack=0,0,0
+
+White=255,255,255
+BoldWhite=112,112,112
+
+Red=250,123,169
+Yellow=217,142,74
+Green=121,172,58
+Cyan=56,183,137
+Blue=89,164,232
+Magenta=185,134,248
+
+BoldRed=208,75,124
+BoldYellow=175,95,24
+BoldGreen=73,127,7
+BoldCyan=6,139,90
+BoldBlue=40,119,190
+BoldMagenta=141,87,207

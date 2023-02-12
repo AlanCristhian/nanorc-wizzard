@@ -1,0 +1,48 @@
+## Syntax highlighting for CSS files.
+
+syntax css "\.css$"
+comment "/*|*/"
+
+# Tags
+color yellow "\b(a|abbr|acronym|address|applet|area|article|aside|audio|b|base)\b"
+color yellow "\b(bdi|bdo|bgsound|big|blink|blockquote|body|br|button|canvas)\b"
+color yellow "\b(caption|center|cite|code|col|colgroup|content|d|ta|datalist|dd)\b"
+color yellow "\b(del|details|dfn|dialog|dir|div|dl|dt|em|embed|fieldset)\b"
+color yellow "\b(figcaption|figure|font|footer|form|frame|frameset|head|header)\b"
+color yellow "\b(h1|h2|h3|h4|h5|h6)\b"
+color yellow "\b(hgroup|hr|html|i|iframe|image|img|i|put|ins|kbd|keygen|label)\b"
+color yellow "\b(legend|li|link|main|map|mark|marquee|menu|menuitem|meta|meter)\b"
+color yellow "\b(nav|nobr|noembed|noframes|noscript|object|ol|optgroup|option)\b"
+color yellow "\b(output|p|param|pictur||plaintext|Experimental|portal|pre)\b"
+color yellow "\b(progress|q|rb|rp|rt|rtc|ruby|s|samp|script|section|select)\b"
+color yellow "\b(shadow|slot|small|source|spacer|span|strike|strong|style|sub)\b"
+color yellow "\b(summary|sup|tab|e|tbody|td|template|textarea|tfoot|th|thead)\b"
+color yellow "\b(time|title|tr|track|tt|u|ul|var|video|wbr|xmp)\b"
+
+# Identifiers and Classes
+color blue "(\.|#)[_a-z][_a-z0-9-]+"
+
+# Properties
+color blue start="^[[:space:]]+" end=":"
+
+# Pseudo-classes
+color blue ":(defined|disabled|empty|enabled|first|first-child|first-of-type|fullscreen)"
+color blue ":(focus|focus-visible|focus-within|last-child|host|host|hover|indeterminate)"
+color blue ":(in-range|invalid|is|lang|last-of-type|left|link|modal|not|nth-child)"
+color blue ":(nth-last-child|nth-last-of-type|nth-of-type|only-child|only-of-type|optional)"
+color blue ":(out-of-range|picture-in-picture|placeholder-shown|paused|playing|read-only)"
+color blue ":(read-write|required|right|root|scope|target|valid|visited|where|active)"
+color blue ":(any-link|autofill|checked|default)"
+
+# Pseudo-elements
+color blue "::(after|backdrop|before|cue|cue-region|first-letter|first-line|file-selector-button)\>"
+color blue "::(marker|part|placeholder|selection|slotted|spelling-error|target-text)\>"
+
+# Strings
+color green "'([^'\]|\\.)*'|"([^"\]|\\.)*"|'''|""""
+
+# Comments:
+color red start="/\*" end="\*/"
+
+# Trailing spaces
+color ,green "[[:space:]]+$"

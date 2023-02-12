@@ -17,3 +17,6 @@ color green ""([^"]|\\")*""
 # Escape sequencies
 color cyan "\\a|\\b|\\t|\\n|\\v|\\f|\\r|\\\^c|\\[[:digit:]]{3,}"
 color cyan "\\u[[:xdigit:]]{4,}|\\\"|\\\\"
+
+# Trailing whitespace.
+color ,green "[[:space:]]+$"

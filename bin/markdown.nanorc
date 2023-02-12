@@ -32,3 +32,6 @@ color yellow "^(=+|-+)$"
 # HTML tags and comments:
 color red "<[^>]+>"
 color red start="<!--" end="-->"
+
+# Trailing whitespace.
+color ,green "[[:space:]]+$"

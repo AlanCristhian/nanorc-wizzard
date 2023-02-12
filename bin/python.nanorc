@@ -25,9 +25,6 @@ color magenta "\<(__abs__|__add__|__aenter__|__aexit__|__aiter__|__and__|__anext
 color green "'([^'\]|\\.)*'|"([^"\]|\\.)*"|'''|""""
 color green "'''|""""
 
-# Comments
-color red "(^|[[:blank:]])#.*"
-
 # Triple-quoted strings.
 color green start="'''([^'),]|$)" end="(^|[^(\])'''"
 color green start=""""([^"),]|$)" end="(^|[^(\])""""
@@ -35,13 +32,11 @@ color green start=""""([^"),]|$)" end="(^|[^(\])""""
 ## If <Tab> should always produce an actual TAB when editing a Makefile:
 # extendsyntax makefile tabgives "	"
 
-# Constants
-# color magenta "\<([[:digit:]]+)\>"
-# color magenta "\<(([[:upper:]]|_)([[:upper:]]|_|[[:digit:]])+)\>"
-
-# Comments
-# color red start="#" end="\n"
-color red "^#.+"
-
 # Decorators
 color blue "@([[:alpha:]]|_)([[:alpha:]]|_|\.|[[:digit:]])+"
+
+# Comments
+color red "(^|[[:blank:]])#.*"
+
+# Trailing whitespace.
+color ,green "[[:space:]]+$"

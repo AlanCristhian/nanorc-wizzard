@@ -1,0 +1,48 @@
+## Syntax highlighting for HTML.
+
+syntax html "\.html?$"
+magic "HTML document"
+comment "<!--|-->"
+
+formatter tidy -m -q
+
+# Tags:
+color yellow start="<" end=">"
+
+# Named character references:
+color cyan "&[^;[:space:]]*;"
+
+# Attributes:
+color blue "\<(abbr|accept(-charset)?|accesskey|action|alink|align|alt|archive|axis|background|bgcolor|border)="
+color blue "\<(cell(padding|spacing)|char(off|set)?|checked|cite|class(id)?|compact|code(base|tag)?|cols(pan)?)="
+color blue "\<(content(editable)?|contextmenu|coords|data|datetime|declare|defer|dir|disabled|enctype)="
+color blue "\<(for|frame(border)?|headers|height|hidden|href(lang)?|hspace|http-equiv|id|ismap)="
+color blue "\<(label|lang|link|longdesc|margin(height|width)|maxlength|media|method|multiple)="
+color blue "\<(name|nohref|noresize|noshade|object|profile|readonly|rel|rev)="
+color blue "\<(rows(pan)?|rules|scheme|scope|scrolling|selected|shape|size|span|src|standby|start|style|summary)="
+color blue "\<(tabindex|target|text|title|type|usemap|valign|value(type)?|vlink|vspace|width|xmlns|xml:space)="
+color blue "\<(poster|preload|src(set|lang)|loading|kind|download|sizes|usermap)="
+color blue "\<(form|min|max|autocomplete|autocapitalize|enterkeyhint|inputmode)="
+color blue "\<(is|itemid|itemprop|itemref|itemtype|nonce|part|slot|spellcheck|translate|draggable|default)="
+color blue "\<on(abort|autocomplete|autocompleteerror|blur|cancel|change|canplay|canplaythrough|click|close|contextmenu|cuechange)="
+color blue "\<on(dblclick|drag|dragend|dragenter|dragleave|dragover)="
+color blue "\<on(dragstart|drop|durationchange|emptied|ended|error)="
+color blue "\<on(focus|input|invalid|keydown|keypress|keyup|load)="
+color blue "\<on(loadeddata|loadedmetadata|loadstart|mousedown)="
+color blue "\<on(mouseenter|mouseleave|mousemove|mouseout|mouseover)="
+color blue "\<on(mouseup|mousewheel|pause|play|playing|progress)="
+color blue "\<on(ratechange|reset|resize|scroll|seeked|seeking)="
+color blue "\<on(select|show|sort|stalled|submit|suspend)="
+color blue "\<on(timeupdate|toggled|volumechange|waiting)="
+
+color magenta "(defer|loop|muted|controls|autofocus|hidden|itemscope|default)"
+
+# Strings:
+color green ""([^"\]|\\.)*""
+color green start="\"" end="\""
+
+# Comments:
+color red start="<!--" end="-->"
+
+## Trailing spaces
+color ,lightblack "[[:space:]]+$"
