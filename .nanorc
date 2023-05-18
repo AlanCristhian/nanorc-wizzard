@@ -32,7 +32,7 @@ set autoindent
 set boldtext
 
 ## Treat any line with leading whitespace as the beginning of a paragraph.
-#set bookstyle
+set bookstyle
 
 ## The characters treated as closing brackets when justifying paragraphs.
 ## This may not include any blank characters.  Only closing punctuation,
@@ -79,7 +79,7 @@ set linenumbers
 ## Enable vim-style lock-files.  This is just to let a vim user know you
 ## are editing a file [s]he is trying to edit and vice versa.  There are
 ## no plans to implement vim-style undo state in these files.
-set locking
+#set locking
 
 ## Fall back to slow libmagic to try and determine an applicable syntax.
 # set magic
@@ -104,7 +104,7 @@ set mouse
 # set multibuffer
 
 ## Don't convert files from DOS/Mac format.
-# set noconvert
+#set noconvert
 
 ## Don't display the helpful shortcut lists at the bottom of the screen.
 set nohelp
@@ -147,7 +147,8 @@ set positionlog
 #set regexp
 
 ## Save a changed buffer automatically on exit; don't prompt.
-# set saveonexit
+set saveonexit
+
 ## (The old form of this option, 'set tempfile', is deprecated.)
 
 ## Put the cursor on the highlighted item in the file browser, and
@@ -183,7 +184,7 @@ set tabstospaces
 #set trimblanks
 
 ## Save files by default in Unix format (also when they were DOS or Mac).
-# set unix
+set unix
 
 ## The two single-column characters used to display the first characters
 ## of tabs and spaces.  187 in ISO 8859-1 (0000BB in Unicode) and 183 in
@@ -207,16 +208,16 @@ set wordchars "_"
 set zap
 
 ## Hide the bars plus help lines and use the whole terminal as edit area.
-# set zero
+#set zero
 
 ## Paint the interface elements of nano.  These are examples; there are
 ## no colors by default, except for errorcolor and spotlightcolor.
 set titlecolor white,lightblack
-set promptcolor white,lightcyan
+set promptcolor black,lightcyan
 set statuscolor white,lightblack
 set errorcolor white,lightred
 set spotlightcolor white,lightyellow
-set selectedcolor white,lightmagenta
+set selectedcolor lightblack,lightblue
 set stripecolor lightblack,black
 set scrollercolor lightblack,black
 set numbercolor lightwhite
@@ -286,7 +287,6 @@ unbind Ins all
 unbind ^A all  # home
 unbind ^D all
 unbind ^H all  # backspace
-#unbind ^I main # identation
 unbind ^K all  # cut
 unbind ^O all
 unbind ^Q all  # search backward
@@ -296,8 +296,9 @@ unbind ^W all  # whereis
 unbind ^X all
 unbind ^Y all  # one page up
 unbind ^\ all  # replace
-unbind ^] all # autocomplete
+unbind ^] all  # autocomplete
 unbind ^Space all
+unbind M-E main  # undo
 unbind M-M main  # disable mouse
 unbind M-N main  # disable linenumbers
 unbind M-G all  # goto
@@ -350,7 +351,7 @@ bind ^F whereis help
 bind ^V "{cancel}{mark}{execute}clp{enter}{cut}{whereis}{paste}" search
 
 ## REPLACE: paste
-bind ^H replace main
+bind ^R replace main
 bind ^V "{cancel}{mark}{execute}clp{enter}{cut}{replace}{paste}" replace
 
 ## REPLACEWITH: paste
@@ -386,10 +387,13 @@ bind ^S savefile main
 bind F10 "{execute}|sed 's/\s\+$//'{enter}" main
 
 ## tags
-bind M-T "{mark}{prevword}{copy}<{nextword}></{paste}>{prevword}{prevword}{nextword}" main
+bind M-E "{mark}{prevword}{copy}<{nextword}>%%</{paste}>{prevword}{prevword}{nextword}" main
+
+## tag attributes
+bind M-R "="%%"{left}{left}{left}{left}{left}" main
 
 ## Snippet
-bind M-R "{mark}{prevword}{execute}|nano_snippets{enter}{home}{whereis}%%{enter}{mark}{right}{right}{delete}" main
+#bind M-R "{mark}{prevword}{execute}|nano_snippets{enter}{home}{whereis}%%{enter}{mark}{right}{right}{delete}" main
 bind M-N "{whereis}%%{enter}{mark}{right}{right}{delete}" main
 
 ## math on selectec text
@@ -399,8 +403,13 @@ bind M-M "{execute}|math{enter}" main
 bind F2 "{execute}|tac{enter}" main
 
 ## sort lines
-#bind F9 "{execute}|sort -f|sed -z 's/\n$//'{enter}" main
-bind F9 "{execute}|sort -f{enter}" main
+bind F9 "{execute}|sort -f|uniq{enter}" main
+
+## Move line down
+bind Sh-M-J "{home}{mark}{end}{cut}{delete}{end}{enter}{paste}" main
+
+## Move line up
+bind Sh-M-K "{home}{mark}{end}{cut}{delete}{up}{enter}{up}{paste}" main
 
 # - Autocomplete command line.
 # - Autoclose bracket.
@@ -410,3 +419,5 @@ bind F9 "{execute}|sort -f{enter}" main
 # - If ^I are binding to indent and complete first try to complete, if fail,
 #   indent.
 # - Mouse scroll without moving the cursor.
+# - In zero interface, file name shows less than 1.5 seconds.
+# - When selected, delete text after press any character.
