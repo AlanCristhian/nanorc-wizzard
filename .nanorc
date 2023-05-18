@@ -146,7 +146,7 @@ set positionlog
 #set regexp
 
 ## Save a changed buffer automatically on exit; don't prompt.
-set saveonexit
+#set saveonexit
 
 ## (The old form of this option, 'set tempfile', is deprecated.)
 
@@ -392,7 +392,7 @@ bind M-E "{mark}{prevword}{copy}<{nextword}>%%</{paste}>{prevword}{prevword}{nex
 bind M-R "="%%"{left}{left}{left}{left}{left}" main
 
 ## Snippet
-#bind M-R "{mark}{prevword}{execute}|nano_snippets{enter}{home}{whereis}%%{enter}{mark}{right}{right}{delete}" main
+bind M-R "{mark}{prevword}{execute}|nano_snippets{enter}{home}{whereis}%%{enter}{mark}{right}{right}{delete}" main
 bind M-N "{whereis}%%{enter}{mark}{right}{right}{delete}" main
 
 ## math on selectec text
