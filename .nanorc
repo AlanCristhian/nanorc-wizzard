@@ -22,10 +22,10 @@ set atblanks
 set autoindent
 
 ## Back up files to the current filename plus a tilde.
-#set backup
+set backup
 
 ## The directory to put unique backup files in.
-# set backupdir ""
+set backupdir "~/backups"
 
 ## Use bold text instead of reverse video text.
 set boldtext
@@ -54,8 +54,7 @@ set constantshow
 # set emptyline
 
 ## Set the target width for automatic hard-wrapping and for justifying
-## paragraphs.  If the specified value is 0 or less, the wrapping point
-
+## paragraphs. If the specified value is 0 or less, the wrapping point
 ## will be the terminal's width minus this number.
 # set fill -8
 
@@ -67,7 +66,7 @@ set guidestripe 80
 set historylog
 
 ## Display a "scrollbar" on the righthand side of the edit window.
-set indicator
+#set indicator
 
 ## Scroll the buffer contents per half-screen instead of per line.
 # set jumpyscrolling
@@ -211,13 +210,13 @@ set zap
 
 ## Paint the interface elements of nano.  These are examples; there are
 ## no colors by default, except for errorcolor and spotlightcolor.
-set titlecolor white,lightblack
-set promptcolor black,lightcyan
+set titlecolor white,black
+set promptcolor lightblack,lightcyan
 set statuscolor white,lightblack
-set errorcolor white,lightred
-set spotlightcolor white,lightyellow
-set selectedcolor lightblack,lightblue
-set stripecolor lightblack,black
+set errorcolor black,lightred
+set spotlightcolor lightblack,lightyellow
+set selectedcolor lightblack,blue
+set stripecolor lightblack
 set scrollercolor lightblack,black
 set numbercolor lightwhite
 set keycolor cyan
@@ -226,7 +225,7 @@ set functioncolor green
 ## === Syntax coloring ===
 ## For all details, see 'man nanorc', section SYNTAX HIGHLIGHTING.
 
-include "~/rep/mastropiero/mastropiero.nanorc"
+include "/usr/share/nano/*.nanorc"
 include "~/bin/*.nanorc"
 
 ## === Key bindings ===
@@ -312,7 +311,6 @@ unbind M-Y main # disable color syntax
 
 ## Enable or disable soft wrapping
 bind M-W softwrap main
-
 bind ^Space complete main
 bind ^W exit main
 bind ^W exit help
@@ -330,7 +328,7 @@ bind M-} findbracket main  # go to the matching bracket
 bind ^K suspend main
 bind ^Q cancel all
 bind F6 speller main
-
+bind ^H chopwordleft main
 
 ## ========================
 ## Bind copy, cut and paste
@@ -340,37 +338,38 @@ bind F6 speller main
 bind Sh-M-X cut main
 bind Sh-M-C copy main
 bind Sh-M-V paste main
-bind ^C "{execute}|clp{enter}{undo}" main
-bind ^X "{execute}|clp{enter}" main
-bind ^V "{execute}clp{enter}" main
+bind ^C "{execute}|~/bin/clp{enter}{undo}" main
+bind ^X "{execute}|~/bin/clp{enter}" main
+bind ^V "{execute}~/bin/clp{enter}" main
 
 ## SEARCH: paste
 bind ^F whereis main
 bind ^F whereis help
-bind ^V "{cancel}{mark}{execute}clp{enter}{cut}{whereis}{paste}" search
+bind ^V "{cancel}{mark}{execute}~/bin/clp{enter}{cut}{whereis}{paste}" search
 
 ## REPLACE: paste
 bind ^R replace main
-bind ^V "{cancel}{mark}{execute}clp{enter}{cut}{replace}{paste}" replace
+bind ^V "{cancel}{mark}{execute}~/bin/clp{enter}{cut}{replace}{paste}" replace
 
 ## REPLACEWITH: paste
-bind ^V "{cancel}{mark}{execute}clp{enter}{cut}{replace}{enter}{paste}" replacewith
+bind ^V "{cancel}{mark}{execute}~/bin/clp{enter}{cut}{replace}{enter}{paste}" replacewith
 
 ## GOTOLINE: paste
 bind ^G gotoline main
-bind ^V "{cancel}{mark}{execute}clp{enter}{cut}{gotoline}{paste}" gotoline
+bind ^V "{cancel}{mark}{execute}~/bin/clp{enter}{cut}{gotoline}{paste}" gotoline
 
 ## WRITEOUT: paste
 bind M-S writeout main
-bind ^V "{cancel}{mark}{execute}clp{enter}{cut}{writeout}{paste}" writeout
+bind ^V "{cancel}{mark}{execute}~/bin/clp{enter}{cut}{writeout}{paste}" writeout
 
 ## INSERT: Open file in new buffer and paste
 bind ^O "{insert}{flipnewbuffer}" main
-bind ^V "{cancel}{mark}{execute}clp{enter}{cut}{insert}{flipnewbuffer}{paste}" insert
+bind ^V "{cancel}{mark}{execute}~/bin/clp{enter}{cut}{insert}{flipnewbuffer}{paste}" insert
 
 ## EXECUTE: paste
 bind ^E execute main
-bind ^V "{cancel}{mark}{execute}clp{enter}{cut}{execute}{paste}" execute
+bind ^V "{cancel}{mark}{execute}~/bin/clp{enter}{cut}{execute}{paste}" execute
+bind ^W cancel execute
 
 ## Open a new void and unnamed buffer
 bind ^N "{execute}{flipnewbuffer}echo -n{enter}" main
@@ -385,30 +384,27 @@ bind ^A "{firstline}{home}{mark}{lastline}{end}" main
 bind ^S savefile main
 bind F10 "{execute}|sed 's/\s\+$//'{enter}" main
 
-## tags
-bind M-E "{mark}{prevword}{copy}<{nextword}>%%</{paste}>{prevword}{prevword}{nextword}" main
-
-## tag attributes
-bind M-R "="%%"{left}{left}{left}{left}{left}" main
-
 ## Snippet
-bind M-R "{mark}{prevword}{execute}|nano_snippets{enter}{home}{whereis}%%{enter}{mark}{right}{right}{delete}" main
+bind M-R "{mark}{prevword}{execute}|bin/nano_snippets{enter}{home}{whereis}%%{enter}{mark}{right}{right}{delete}" main
 bind M-N "{whereis}%%{enter}{mark}{right}{right}{delete}" main
 
 ## math on selectec text
-bind M-M "{execute}|math{enter}" main
+bind M-M "{copy}{execute}|~/bin/math {paste}{enter}" main
 
 ## reverse order
 bind F2 "{execute}|tac{enter}" main
 
 ## sort lines
-bind F9 "{execute}|sort -f|uniq{enter}" main
-
-## Move line down
-bind Sh-M-J "{home}{mark}{end}{cut}{delete}{end}{enter}{paste}" main
+bind F9 "{execute}|sort -f|uniq{enter}{backspace}" main
 
 ## Move line up
-bind Sh-M-K "{home}{mark}{end}{cut}{delete}{up}{enter}{up}{paste}" main
+bind Sh-M-K "{end}{mark}{home}{home}{cut}{delete}{up}{enter}{up}{paste}" main
+
+## Move line down
+bind Sh-M-J "{end}{mark}{home}{home}{cut}{delete}{end}{enter}{paste}" main
+
+## Close Tag
+bind F3 "￼{wherewas}{regexp}<[[:alpha:]]{enter}{right}{mark}{nextword}{copy}{whereis}{regexp}￼{enter}{delete}</{paste}>" main
 
 # - Autocomplete command line.
 # - Autoclose bracket.

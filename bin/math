@@ -1,8 +1,10 @@
-#!/c/Users/Ruiz/bin/env/Scripts/python
+#!/c/Windows/py
 
 from math import *
+from statistics import *
 import sys
 
-expression = sys.stdin.readline()
+
+expression = " ".join(sys.argv[1:])
 result = eval(expression)
 print(result, end="")
