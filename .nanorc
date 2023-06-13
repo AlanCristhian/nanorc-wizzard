@@ -375,7 +375,7 @@ bind ^W cancel execute
 bind ^N "{execute}{flipnewbuffer}echo -n{enter}" main
 
 ## Duplicate line
-bind ^D "{home}{mark}{end}{copy}{enter}{paste}{end}" main
+bind ^D "{cut}{paste}{paste}" main
 
 ## Select all
 bind ^A "{firstline}{home}{mark}{lastline}{end}" main
