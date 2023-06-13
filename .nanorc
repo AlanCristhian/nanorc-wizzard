@@ -338,8 +338,8 @@ bind ^H chopwordleft main
 bind Sh-M-X cut main
 bind Sh-M-C copy main
 bind Sh-M-V paste main
-bind ^C "{execute}|~/bin/clp{enter}{undo}" main
-bind ^X "{execute}|~/bin/clp{enter}" main
+bind ^C "{cut}{mark}{paste}{execute}|~/bin/clp{enter}{undo}" main
+bind ^X "{cut}{mark}{paste}{execute}|~/bin/clp{enter}" main
 bind ^V "{execute}~/bin/clp{enter}" main
 
 ## SEARCH: paste
@@ -385,26 +385,23 @@ bind ^S savefile main
 bind F10 "{execute}|sed 's/\s\+$//'{enter}" main
 
 ## Snippet
-bind M-R "{mark}{prevword}{execute}|bin/nano_snippets{enter}{home}{whereis}%%{enter}{mark}{right}{right}{delete}" main
+bind M-R "{mark}{prevword}{execute}|~/bin/nano_snippets{enter}{home}{whereis}%%{enter}{mark}{right}{right}{delete}" main
 bind M-N "{whereis}%%{enter}{mark}{right}{right}{delete}" main
 
 ## math on selectec text
 bind M-M "{copy}{execute}|~/bin/math {paste}{enter}" main
 
-## reverse order
-bind F2 "{execute}|tac{enter}" main
-
 ## sort lines
-bind F9 "{execute}|sort -f|uniq{enter}{backspace}" main
+bind F2 "{cut}{mark}{paste}{execute}|sort -f|uniq{enter}{backspace}" main
+
+## reverse order
+bind F3 "{cut}{mark}{paste}{execute}|sort -f -r|uniq{enter}{backspace}" main
 
 ## Move line up
 bind Sh-M-K "{end}{mark}{home}{home}{cut}{delete}{up}{enter}{up}{paste}" main
 
 ## Move line down
 bind Sh-M-J "{end}{mark}{home}{home}{cut}{delete}{end}{enter}{paste}" main
-
-## Close Tag
-bind F3 "￼{wherewas}{regexp}<[[:alpha:]]{enter}{right}{mark}{nextword}{copy}{whereis}{regexp}￼{enter}{delete}</{paste}>" main
 
 # - Autocomplete command line.
 # - Autoclose bracket.
