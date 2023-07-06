@@ -22,10 +22,10 @@ set atblanks
 set autoindent
 
 ## Back up files to the current filename plus a tilde.
-set backup
+# set backup
 
 ## The directory to put unique backup files in.
-set backupdir "~/backups"
+# set backupdir "~/backups"
 
 ## Use bold text instead of reverse video text.
 set boldtext
@@ -66,7 +66,7 @@ set guidestripe 80
 set historylog
 
 ## Display a "scrollbar" on the righthand side of the edit window.
-#set indicator
+# set indicator
 
 ## Scroll the buffer contents per half-screen instead of per line.
 # set jumpyscrolling
@@ -77,7 +77,7 @@ set linenumbers
 ## Enable vim-style lock-files.  This is just to let a vim user know you
 ## are editing a file [s]he is trying to edit and vice versa.  There are
 ## no plans to implement vim-style undo state in these files.
-#set locking
+# set locking
 
 ## Fall back to slow libmagic to try and determine an applicable syntax.
 # set magic
@@ -102,13 +102,13 @@ set mouse
 # set multibuffer
 
 ## Don't convert files from DOS/Mac format.
-#set noconvert
+# set noconvert
 
 ## Don't display the helpful shortcut lists at the bottom of the screen.
 set nohelp
 
 ## Don't automatically add a newline when a file does not end with one.
-set nonewlines
+#set nonewlines
 
 ## Set operating directory.  nano will not read or write files outside
 ## this directory and its subdirectories.  Also, the current directory
@@ -135,17 +135,17 @@ set positionlog
 # set quotestr "^([ 	]*([!#%:;>|}]|//))+"
 
 ## Try to work around a mismatching terminfo terminal description.
-#set rawsequences
+# set rawsequences
 
 ## Fix Backspace/Delete confusion problem.
 # set rebinddelete
 
 ## Do regular-expression searches by default.
 ## Regular expressions are of the extended type (ERE).
-#set regexp
+# set regexp
 
 ## Save a changed buffer automatically on exit; don't prompt.
-#set saveonexit
+# set saveonexit
 
 ## (The old form of this option, 'set tempfile', is deprecated.)
 
@@ -179,7 +179,7 @@ set tabsize 4
 set tabstospaces
 
 ## Snip whitespace at the end of lines when justifying or hard-wrapping.
-#set trimblanks
+# set trimblanks
 
 ## Save files by default in Unix format (also when they were DOS or Mac).
 set unix
@@ -188,7 +188,7 @@ set unix
 ## of tabs and spaces.  187 in ISO 8859-1 (0000BB in Unicode) and 183 in
 ## ISO-8859-1 (0000B7 in Unicode) seem to be good values for these.
 ## The default when in a UTF-8 locale:
-# set whitespace "»·"
+set whitespace "❘⎵"
 ## The default otherwise:
 # set whitespace ">."
 
@@ -206,7 +206,7 @@ set wordchars "_"
 set zap
 
 ## Hide the bars plus help lines and use the whole terminal as edit area.
-#set zero
+# set zero
 
 ## Paint the interface elements of nano.  These are examples; there are
 ## no colors by default, except for errorcolor and spotlightcolor.
@@ -216,7 +216,7 @@ set statuscolor white,lightblack
 set errorcolor black,lightred
 set spotlightcolor lightblack,lightyellow
 set selectedcolor lightblack,blue
-set stripecolor lightblack
+set stripecolor brightblack
 set scrollercolor lightblack,black
 set numbercolor lightwhite
 set keycolor cyan
@@ -226,7 +226,8 @@ set functioncolor green
 ## For all details, see 'man nanorc', section SYNTAX HIGHLIGHTING.
 
 include "/usr/share/nano/*.nanorc"
-include "~/bin/*.nanorc"
+include "~/.nano/*.nanorc"
+include "~/rep/thorns/*.nanorc"
 
 ## === Key bindings ===
 
@@ -242,7 +243,7 @@ include "~/bin/*.nanorc"
 ## keycode, which is hard-bound to the backspace function.  So, if you
 ## normally use <Backspace> for backspacing and not ^H, you can make
 ## <Ctrl+Backspace> delete the word to the left of the cursor with:
-#bind ^H chopwordleft main
+bind ^H chopwordleft main
 
 ## For a more mnemonic Comment keystroke (overriding Cut-from-cursor):
 # bind M-K comment main
@@ -270,54 +271,65 @@ bind M-L "{nextword}{mark}{prevword}{execute}|sed 's/.*/\L&/'{enter}" main
 ## such as ^O for Open, ^F for Find, ^H for Help, and ^Q for Quit,
 ## then uncomment |sed 's/.*/\L&/'
 
-
 ## Unbind weird behaviour
-unbind F2 main
-unbind F3 main
-unbind F4 main
-unbind F5 main
-unbind F6 main
-unbind F7 main
-unbind F8 main
-unbind F9 main
-unbind F12 main
-unbind Ins all
-unbind ^A all  # home
-unbind ^D all
-unbind ^H all  # backspace
-unbind ^K all  # cut
-unbind ^O all
-unbind ^Q all  # search backward
-unbind ^R all  # insert new file
-unbind ^T all  # execute command
-unbind ^W all  # whereis
-unbind ^X all
-unbind ^Y all  # one page up
-unbind ^\ all  # replace
-unbind ^] all  # autocomplete
-unbind ^Space all
-unbind M-E main  # undo
-unbind M-M main  # disable mouse
-unbind M-N main  # disable linenumbers
-unbind M-G all  # goto
-unbind M-J all  # justify paragraph or regionc
-unbind M-3 all  # comment/uncomment line/region
-unbind M-] all  # go to the matching bracket
-unbind M-R main  # replace
-unbind M-Q main  # search next occurence backward
-unbind M-T main  # cut from cursor to end
-unbind M-W main  # search next occurence forward
-unbind M-Y main # disable color syntax
+#unbind F2 main
+#unbind F3 main
+#unbind F4 main
+#unbind F5 main
+#unbind F6 main
+#unbind F7 main
+#unbind F8 main
+#unbind F9 main
+#unbind F12 main
+#unbind Ins all
+#unbind ^A all  # home
+#unbind ^D all
+#unbind ^K all  # cut
+#unbind ^O all
+#unbind ^Q all  # search backward
+#unbind ^R all  # insert new file
+#unbind ^T all  # execute command
+#unbind ^W all  # whereis
+#unbind ^X all
+#unbind ^Y all  # one page up
+#unbind ^\ all  # replace
+#unbind ^] all  # autocomplete
+#unbind ^Space all
+#unbind M-E main  # undo
+#unbind M-M main  # disable mouse
+#unbind M-N main  # disable linenumbers
+#unbind M-G all  # goto
+#unbind M-J all  # justify paragraph or regionc
+#unbind M-3 all  # comment/uncomment line/region
+#unbind M-] all  # go to the matching bracket
+#unbind M-R main  # replace
+#unbind M-Q main  # search next occurence backward
+#unbind M-T main  # cut from cursor to end
+#unbind M-W main  # search next occurence forward
+#unbind M-Y main # disable color syntax
 
-## Enable or disable soft wrapping
-bind M-W softwrap main
-bind ^Space complete main
+
+## ========================
+## Make my own key bindings
+## ========================
+
+
+#bind ^I indent main
 bind ^W exit main
 bind ^W exit help
+
 bind M-F findnext main
 bind M-F findnext help
+bind M-F findnext browser
+
 bind ^B wherewas main
+bind ^B wherewas help
+bind ^B wherewas browser
+
 bind M-B findprevious main
+bind M-B findprevious help
+bind M-B findprevious browser
+
 bind ^Z undo main
 bind ^Y redo main
 bind ^/ comment main
@@ -326,56 +338,71 @@ bind M-. recordmacro main
 bind M-, runmacro main
 bind M-} findbracket main  # go to the matching bracket
 bind ^K suspend main
-bind ^Q cancel all
-bind F6 speller main
-bind ^H chopwordleft main
+#bind F6 speller main
 
 ## ========================
 ## Bind copy, cut and paste
 ## ========================
 
 ## MAIN: copy, cut and paste
-bind Sh-M-X cut main
-bind Sh-M-C copy main
-bind Sh-M-V paste main
-bind ^C "{cut}{mark}{paste}{execute}|~/bin/clp{enter}{undo}" main
-bind ^X "{cut}{mark}{paste}{execute}|~/bin/clp{enter}" main
-bind ^V "{execute}~/bin/clp{enter}" main
+bind Sh-M-X cut all
+bind Sh-M-C copy all
+bind Sh-M-V paste all
+bind ^C "{cut}{mark}{paste}{execute}|~/.nano/clp{enter}{undo}{undo}{undo}" main
+bind ^X "{cut}{mark}{paste}{execute}|~/.nano/clp{enter}{undo}{undo}" main
+bind ^V "{execute}~/.nano/clp{enter}" main
 
 ## SEARCH: paste
 bind ^F whereis main
 bind ^F whereis help
-bind ^V "{cancel}{mark}{execute}~/bin/clp{enter}{cut}{whereis}{paste}" search
+bind ^F whereis browser
+bind ^V "{cancel}{mark}{execute}~/.nano/clp{enter}{cut}{undo}{undo}{whereis}{paste}" search
 
 ## REPLACE: paste
 bind ^R replace main
-bind ^V "{cancel}{mark}{execute}~/bin/clp{enter}{cut}{replace}{paste}" replace
+bind ^V "{cancel}{mark}{execute}~/.nano/clp{enter}{cut}{undo}{undo}{replace}{paste}" replace
 
 ## REPLACEWITH: paste
-bind ^V "{cancel}{mark}{execute}~/bin/clp{enter}{cut}{replace}{enter}{paste}" replacewith
+bind ^V "{cancel}{mark}{execute}~/.nano/clp{enter}{cut}{undo}{undo}{replace}{enter}{paste}" replacewith
 
 ## GOTOLINE: paste
 bind ^G gotoline main
-bind ^V "{cancel}{mark}{execute}~/bin/clp{enter}{cut}{gotoline}{paste}" gotoline
+bind ^V "{cancel}{mark}{execute}~/.nano/clp{enter}{cut}{undo}{undo}{gotoline}{paste}" gotoline
 
 ## WRITEOUT: paste
 bind M-S writeout main
-bind ^V "{cancel}{mark}{execute}~/bin/clp{enter}{cut}{writeout}{paste}" writeout
+bind ^V "{cancel}{mark}{execute}~/.nano/clp{enter}{cut}{undo}{undo}{writeout}{paste}" writeout
 
-## INSERT: Open file in new buffer and paste
+## OPEN EXISTENT FILE
+## ==================
+
+# INSERT: Open file in new buffer and paste
+bind F1 help browser
+unbind M-\ browser
+unbind M-/ browser
+unbind ^P browser
+unbind ^N browser
+unbind ^Y browser
+unbind ^V browser
 bind ^O "{insert}{flipnewbuffer}" main
-bind ^V "{cancel}{mark}{execute}~/bin/clp{enter}{cut}{insert}{flipnewbuffer}{paste}" insert
+bind ^C "{exit}{cancel}" browser
+bind ^W "{exit}{cancel}" browser
+bind ^W "{cancel}{exit}{cancel}" whereisfile
+bind ^G gotodir browser
+
+# Paste in browser search
+bind ^V "{cancel}{exit}{cancel}{mark}{execute}~/.nano/clp{enter}{cut}{undo}{undo}{insert}{flipnewbuffer}{browser}{whereis}{paste}" whereisfile
 
 ## EXECUTE: paste
 bind ^E execute main
-bind ^V "{cancel}{mark}{execute}~/bin/clp{enter}{cut}{execute}{paste}" execute
+bind ^V "{cancel}{mark}{execute}~/.nano/clp{enter}{cut}{undo}{undo}{execute}{paste}" execute
 bind ^W cancel execute
 
 ## Open a new void and unnamed buffer
 bind ^N "{execute}{flipnewbuffer}echo -n{enter}" main
 
 ## Duplicate line
-bind ^D "{cut}{paste}{paste}" main
+bind ^D "{copy}{paste}{up}{end}" main
 
 ## Select all
 bind ^A "{firstline}{home}{mark}{lastline}{end}" main
@@ -385,11 +412,11 @@ bind ^S savefile main
 bind F10 "{execute}|sed 's/\s\+$//'{enter}" main
 
 ## Snippet
-bind M-R "{mark}{prevword}{execute}|~/bin/nano_snippets{enter}{home}{whereis}%%{enter}{mark}{right}{right}{delete}" main
+bind M-R "{mark}{prevword}{execute}|~/.nano/nano_snippets{enter}{home}{whereis}%%{enter}{mark}{right}{right}{delete}" main
 bind M-N "{whereis}%%{enter}{mark}{right}{right}{delete}" main
 
 ## math on selectec text
-bind M-M "{copy}{execute}|~/bin/math {paste}{enter}" main
+bind M-M "{cut}{execute}~/.nano/math {paste}{enter}" main
 
 ## sort lines
 bind F2 "{cut}{mark}{paste}{execute}|sort -f|uniq{enter}{backspace}" main
@@ -403,6 +430,9 @@ bind Sh-M-K "{end}{mark}{home}{home}{cut}{delete}{up}{enter}{up}{paste}" main
 ## Move line down
 bind Sh-M-J "{end}{mark}{home}{home}{cut}{delete}{end}{enter}{paste}" main
 
+## Open and autoclose curly braces
+bind M-{ "{{}}{left}{enter}{up}{end}{enter}{indent}" main
+
 # - Autocomplete command line.
 # - Autoclose bracket.
 # - Keyword name instead color name.
@@ -413,3 +443,9 @@ bind Sh-M-J "{end}{mark}{home}{home}{cut}{delete}{end}{enter}{paste}" main
 # - Mouse scroll without moving the cursor.
 # - In zero interface, file name shows less than 1.5 seconds.
 # - When selected, delete text after press any character.
+# - There is no wherewasfile menu. There is no way to bind a key on the search backward menu in the file browser.
+# - bind ^I "	" make nano hang.
+# - Comment that curses should be installed. libncurses-dev
+# - Add whitespacecolor.
+# - man 5 nano doesn't work.
+# - Interpret 4 spaces as tab when show whitespaces.
